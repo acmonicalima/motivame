@@ -1,309 +1,303 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-  <title>Motiva.me - CIEP 183 João Vitta</title>
-  <style>
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Motiva.me - CIEP 183 João Vitta</title>
+<style>
+  /* RESET básico */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #111;
-      color: #eee;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #111;
+    color: #eee;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    header {
-      width: 100%;
-      max-width: 1200px;
-      background: #fff;
-      color: #222;
-      padding: 15px 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    }
+  header {
+    width: 100%;
+    max-width: 1200px;
+    background: #fff;
+    color: #222;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
 
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
 
-    .header-left img {
-      height: 70px;
-      width: auto;
-      user-select: text; /* liberar seleção */
-      -webkit-user-select: text;
-      -moz-user-select: text;
-      -ms-user-select: text;
-    }
+  .header-left img {
+    height: 80px;
+    width: auto;
+    user-select: text;
+  }
 
-    .header-left .textos {
-      display: flex;
-      flex-direction: column;
-      font-weight: 600;
-      font-size: 1.2rem;
-      line-height: 1.3;
-      color: #222;
-    }
+  .header-left .textos {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    color: #222;
+  }
 
-    #socialHeader {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: #222;
-      user-select: text;
-    }
+  #socialHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #222;
+    user-select: text;
+  }
 
-    #socialHeader a {
-      color: #222;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: color 0.3s ease;
-    }
+  #socialHeader a {
+    color: #222;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
 
-    #socialHeader a:hover {
-      color: #e91e63;
-    }
+  #socialHeader a:hover {
+    color: #e91e63;
+  }
 
-    #socialHeader svg {
-      width: 22px;
-      height: 22px;
-      fill: currentColor;
-    }
+  #socialHeader svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+  }
 
+  main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 25px 20px 50px;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .gallery {
+    flex: 1 1 700px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 18px;
+    justify-items: center;
+  }
+
+  .card {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 3px 12px rgba(255, 255, 255, 0.12);
+    background: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px 15px 0 0;
+    user-select: text; /* liberado para segurar e salvar */
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover img {
+    transform: scale(1.05);
+  }
+
+  .curtir-btn {
+    width: 100%;
+    padding: 10px 0;
+    background: #e91e63;
+    border: none;
+    border-radius: 0 0 15px 15px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+
+  .curtir-btn:hover {
+    background-color: #c2185b;
+  }
+
+  #imagemGrandeContainer {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1500;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  #imagemGrandeContainer.show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  #imagemGrandeContainer img {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 20px;
+    user-select: text;
+    box-shadow: 0 0 30px #e91e63;
+  }
+
+  #imagemGrandeContainer button.closeBtn {
+    margin-top: 18px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 30px;
+    background: #e91e63;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+
+  #imagemGrandeContainer button.closeBtn:hover {
+    background-color: #c2185b;
+  }
+
+  form {
+    flex: 0 0 380px;
+    background: #222;
+    padding: 25px 20px;
+    border-radius: 15px;
+    box-shadow: 0 3px 20px rgba(255,255,255,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    color: #eee;
+    user-select: none;
+    height: fit-content;
+  }
+
+  form label {
+    font-weight: 600;
+    font-size: 1.15rem;
+  }
+
+  form textarea {
+    resize: vertical;
+    min-height: 110px;
+    background: #333;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    color: #eee;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  form input[type="text"] {
+    background: #333;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    color: #eee;
+    font-size: 1rem;
+    font-family: inherit;
+  }
+
+  form button {
+    background: #e91e63;
+    border: none;
+    padding: 14px;
+    border-radius: 15px;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+  }
+
+  form button:hover {
+    background-color: #c2185b;
+  }
+
+  form .info-msg {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: #f48fb1;
+    user-select: none;
+  }
+
+  @media (max-width: 980px) {
     main {
-      width: 100%;
-      max-width: 1200px;
-      margin-top: 20px;
-      display: flex;
-      gap: 20px;
-      padding: 0 25px 40px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .gallery {
-      flex: 1 1 700px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
-      justify-items: center;
-    }
-
-    .card {
-      position: relative;
-      cursor: pointer;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s ease;
-      background: #222;
-    }
-
-    .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 12px;
-      /* Aqui permitimos seleção para liberar menu nativo */
-      user-select: text;
-      -webkit-user-select: text;
-      -moz-user-select: text;
-      -ms-user-select: text;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .curtir-btn {
-      width: 100%;
-      padding: 6px 0;
-      background: #e91e63;
-      border: none;
-      border-radius: 0 0 12px 12px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      user-select: none;
-    }
-
-    .curtir-btn:hover {
-      background-color: #c2185b;
-    }
-
-    #imagemGrandeContainer {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.85);
-      display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      z-index: 1000;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      flex-direction: column;
-      padding: 20px;
     }
-
-    #imagemGrandeContainer.show {
-      visibility: visible;
-      opacity: 1;
-    }
-
-    #imagemGrandeContainer img {
-      max-width: 90vw;
-      max-height: 80vh;
-      border-radius: 15px;
-      /* liberando seleção para tocar e segurar */
-      user-select: text;
-      -webkit-user-select: text;
-      -moz-user-select: text;
-      -ms-user-select: text;
-      box-shadow: 0 0 25px #e91e63;
-    }
-
-    #imagemGrandeContainer button.closeBtn {
-      margin-top: 15px;
-      padding: 8px 20px;
-      border: none;
-      border-radius: 25px;
-      background: #e91e63;
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      user-select: none;
-    }
-
-    #imagemGrandeContainer button.closeBtn:hover {
-      background-color: #c2185b;
-    }
-
     form {
-      flex: 0 0 400px;
-      background: #222;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 15px rgba(255,255,255,0.1);
-      display: flex;
+      width: 90%;
+    }
+    .gallery {
+      width: 90%;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+  }
+
+  @media (max-width: 580px) {
+    header {
       flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 15px 15px;
+    }
+    .header-left {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      width: 100%;
+    }
+    #socialHeader {
+      width: 100%;
+      justify-content: flex-start;
       gap: 15px;
-      color: #eee;
-      user-select: none;
-      height: fit-content;
-    }
-
-    form label {
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    form textarea {
-      resize: vertical;
-      min-height: 100px;
-      background: #333;
-      border: none;
-      border-radius: 8px;
-      padding: 10px;
-      color: #eee;
       font-size: 1rem;
-      font-family: inherit;
     }
-
-    form input[type="text"] {
-      background: #333;
-      border: none;
-      border-radius: 8px;
-      padding: 10px;
-      color: #eee;
-      font-size: 1rem;
-      font-family: inherit;
+    #socialHeader span {
+      white-space: nowrap;
     }
-
-    form button {
-      background: #e91e63;
-      border: none;
-      padding: 12px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: #fff;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-
-    form button:hover {
-      background-color: #c2185b;
-    }
-
-    form .info-msg {
-      font-size: 0.9rem;
-      font-style: italic;
-      color: #f48fb1;
-      user-select: none;
-    }
-
-    @media (max-width: 900px) {
-      main {
-        flex-direction: column;
-        align-items: center;
-      }
-      form {
-        width: 90%;
-      }
-      .gallery {
-        width: 90%;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      }
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        padding: 15px 15px;
-      }
-      .header-left {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        width: 100%;
-      }
-      #socialHeader {
-        width: 100%;
-        justify-content: flex-start;
-        gap: 15px;
-        font-size: 1rem;
-      }
-      #socialHeader span {
-        white-space: nowrap;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
   <header>
@@ -311,7 +305,7 @@
       <img src="assets/logo_motivame.png" alt="Logo Motiva.me" />
       <div class="textos">
         <div>CIEP 183 JOÃO VITTA</div>
-        <div style="font-weight:400; font-size:0.9rem; color:#555; margin-top: 4px;">Inspirando forças para transformar vidas.</div>
+        <div style="font-weight: 400; font-size: 0.9rem; color: #555; margin-top: 5px;">Inspirando forças para transformar vidas.</div>
       </div>
     </div>
     <div id="socialHeader">
@@ -408,7 +402,7 @@
 
     // Abrir imagem grande ao clicar
     gallery.addEventListener('click', e => {
-      if (e.target.tagName === 'IMG') {
+      if(e.target.tagName === 'IMG'){
         imagemGrande.src = e.target.src;
         imagemGrande.alt = e.target.alt;
         imagemGrandeContainer.classList.add('show');
@@ -426,8 +420,13 @@
     gallery.querySelectorAll('.curtir-btn').forEach(btn => {
       btn.addEventListener('click', e => {
         e.stopPropagation();
-        btn.textContent = btn.textContent === 'Curtir' ? 'Curtiu!' : 'Curtir';
-        btn.style.backgroundColor = btn.textContent === 'Curtir' ? '#e91e63' : '#4caf50';
+        if(btn.textContent === 'Curtir'){
+          btn.textContent = 'Curtiu!';
+          btn.style.backgroundColor = '#4caf50';
+        } else {
+          btn.textContent = 'Curtir';
+          btn.style.backgroundColor = '#e91e63';
+        }
       });
     });
 
@@ -437,7 +436,7 @@
       const mensagem = form.mensagem.value.trim();
       const assinatura = form.assinatura.value.trim() || 'Anônimo';
 
-      if (!mensagem) {
+      if(!mensagem){
         infoMsg.textContent = 'Por favor, escreva uma mensagem antes de enviar.';
         return;
       }
