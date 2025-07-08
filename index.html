@@ -5,11 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Motiva.me - CIEP 183 João Vitta</title>
 <style>
-  /* RESET básico */
+  /* RESET */
   * {
     margin: 0; padding: 0; box-sizing: border-box;
   }
-
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #111;
@@ -19,80 +18,64 @@
     flex-direction: column;
     align-items: center;
   }
-
   header {
     width: 100%;
     max-width: 1200px;
     background: #fff;
     color: #222;
-    padding: 20px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    padding: 20px 30px 30px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  }
-
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-
-  .header-left img {
-    height: 100px;
-    width: auto;
-    user-select: text;
-  }
-
-  .header-left .textos {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    user-select: none;
+  }
+  header img {
+    height: 140px;
+    width: auto;
+    margin-bottom: 10px;
+    user-select: text;
+  }
+  header .textos {
     font-weight: 700;
-    font-size: 1.4rem;
-    line-height: 1.2;
+    font-size: 1.6rem;
     color: #222;
+    line-height: 1.2;
   }
-
-  .header-left .textos div:last-child {
+  header .subtext {
     font-weight: 400;
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #555;
-    margin-top: 4px;
+    margin-top: 6px;
+    margin-bottom: 15px;
   }
-
   #socialHeader {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 12px;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #222;
-    user-select: text;
   }
-
   #socialHeader a {
     color: #222;
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 6px;
-    font-weight: 700;
     cursor: pointer;
     transition: color 0.3s ease;
   }
-
   #socialHeader a:hover {
     color: #e91e63;
   }
-
   #socialHeader svg {
     width: 28px;
     height: 28px;
     fill: currentColor;
   }
-
   main {
     width: 100%;
     max-width: 1200px;
@@ -102,15 +85,13 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-
   .gallery {
     flex: 1 1 700px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* DUAS IMAGENS POR LINHA */
     gap: 20px;
     justify-items: center;
   }
-
   .card {
     position: relative;
     cursor: pointer;
@@ -121,8 +102,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 500px;
   }
-
   .card img {
     width: 100%;
     height: auto;
@@ -130,11 +112,9 @@
     user-select: text;
     transition: transform 0.3s ease;
   }
-
   .card:hover img {
     transform: scale(1.06);
   }
-
   .curtir-btn {
     width: 100%;
     padding: 14px 0;
@@ -148,11 +128,9 @@
     transition: background-color 0.3s ease;
     user-select: none;
   }
-
   .curtir-btn:hover {
     background-color: #c2185b;
   }
-
   #imagemGrandeContainer {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -167,12 +145,10 @@
     flex-direction: column;
     padding: 25px;
   }
-
   #imagemGrandeContainer.show {
     visibility: visible;
     opacity: 1;
   }
-
   #imagemGrandeContainer img {
     max-width: 95vw;
     max-height: 85vh;
@@ -180,7 +156,6 @@
     user-select: text;
     box-shadow: 0 0 38px #e91e63;
   }
-
   #imagemGrandeContainer button.closeBtn {
     margin-top: 22px;
     padding: 14px 32px;
@@ -194,11 +169,9 @@
     transition: background-color 0.3s ease;
     user-select: none;
   }
-
   #imagemGrandeContainer button.closeBtn:hover {
     background-color: #c2185b;
   }
-
   form {
     flex: 0 0 400px;
     background: #222;
@@ -213,12 +186,10 @@
     height: fit-content;
     min-width: 350px;
   }
-
   form label {
     font-weight: 700;
     font-size: 1.3rem;
   }
-
   form textarea {
     resize: vertical;
     min-height: 130px;
@@ -230,7 +201,6 @@
     font-size: 1.1rem;
     font-family: inherit;
   }
-
   form input[type="text"] {
     background: #333;
     border: none;
@@ -240,7 +210,6 @@
     font-size: 1.1rem;
     font-family: inherit;
   }
-
   form button {
     background: #e91e63;
     border: none;
@@ -253,11 +222,9 @@
     user-select: none;
     transition: background-color 0.3s ease;
   }
-
   form button:hover {
     background-color: #c2185b;
   }
-
   form .info-msg {
     font-size: 1rem;
     font-style: italic;
@@ -265,7 +232,19 @@
     user-select: none;
     min-height: 24px;
   }
-
+  /* Checkbox anonimo */
+  .anonimo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    user-select: none;
+  }
+  .anonimo-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
   @media (max-width: 1024px) {
     main {
       flex-direction: column;
@@ -274,210 +253,225 @@
     form {
       width: 90%;
       min-width: unset;
+      margin-top: 25px;
     }
     .gallery {
       width: 100%;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
     }
   }
-
   @media (max-width: 600px) {
     header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 20px 20px;
+      padding: 20px 20px 25px;
     }
-    .header-left {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-      width: 100%;
+    header img {
+      height: 100px;
+      margin-bottom: 6px;
+    }
+    header .textos {
+      font-size: 1.3rem;
+    }
+    header .subtext {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
     }
     #socialHeader {
-      width: 100%;
-      justify-content: flex-start;
-      gap: 18px;
-      font-size: 1.1rem;
+      font-size: 1rem;
+      gap: 8px;
     }
-    #socialHeader span {
-      white-space: nowrap;
+    #socialHeader svg {
+      width: 22px;
+      height: 22px;
+    }
+    main {
+      margin: 20px 10px 40px;
+      gap: 20px;
     }
     form {
       width: 95%;
-      padding: 20px;
+      min-width: unset;
     }
     .gallery {
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: 1fr;
       gap: 15px;
     }
-    .card img {
-      border-radius: 15px 15px 0 0;
-    }
-    .curtir-btn {
-      font-size: 1rem;
-      padding: 12px 0;
-      border-radius: 0 0 15px 15px;
+    .card {
+      max-width: 100%;
     }
   }
 </style>
 </head>
 <body>
-  <header>
-    <div class="header-left">
-      <img src="assets/logo_motivame.png" alt="Logo Motiva.me" />
-      <div class="textos">
-        <div>CIEP 183 JOÃO VITTA</div>
-        <div>Inspirando forças para transformar vidas.</div>
-      </div>
+<header>
+  <img src="assets/logo_motivame.png" alt="Logo Motiva.me" />
+  <div class="textos">
+    CIEP 183 JOÃO VITTA<br />
+    <span class="subtext">Inspirando forças para transformar vidas.</span>
+  </div>
+  <div id="socialHeader" aria-label="Redes sociais">
+    <span>Siga-nos</span>
+    <a href="https://www.instagram.com/joaovitta183" target="_blank" rel="noopener noreferrer" aria-label="Instagram João Vitta">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0120 7.75v8.5a3.75 3.75 0 01-3.75 3.75h-8.5A3.75 3.75 0 014 16.25v-8.5A3.75 3.75 0 017.75 4zm8.75 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
+      </svg>
+      Instagram
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="gallery" id="gallery">
+    <div class="card">
+      <img src="https://i.postimg.cc/SY8RBRcB/1.png" alt="Mensagem 1" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 1">Curtir</button>
     </div>
-    <div id="socialHeader">
-      <span>Siga-nos</span>
-      <a href="https://www.instagram.com/joaovitta183" target="_blank" rel="noopener noreferrer" aria-label="Instagram João Vitta">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0120 7.75v8.5a3.75 3.75 0 01-3.75 3.75h-8.5A3.75 3.75 0 014 16.25v-8.5A3.75 3.75 0 017.75 4zm8.75 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
-        </svg>
-        Instagram
-      </a>
+    <div class="card">
+      <img src="https://i.postimg.cc/f3LLwBxj/2.png" alt="Mensagem 2" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 2">Curtir</button>
     </div>
-  </header>
-
-  <main>
-    <div class="gallery" id="gallery">
-      <div class="card">
-        <img src="https://i.postimg.cc/SY8RBRcB/1.png" alt="Mensagem 1" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 1">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/f3LLwBxj/2.png" alt="Mensagem 2" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 2">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/mPVkf0Fg/3.png" alt="Mensagem 3" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 3">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/0bYrZ6km/4.png" alt="Mensagem 4" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 4">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/zyqvQJvQ/5.png" alt="Mensagem 5" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 5">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/B8VvtHpW/6.png" alt="Mensagem 6" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 6">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/FdkHSzCY/7.png" alt="Mensagem 7" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 7">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/2Lp87Yg2/8.png" alt="Mensagem 8" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 8">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/2L4jHJDm/9.png" alt="Mensagem 9" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 9">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/0rmN26J3/10.png" alt="Mensagem 10" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 10">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/QH3dBXQM/11.png" alt="Mensagem 11" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 11">Curtir</button>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/kBvXKksv/12.png" alt="Mensagem 12" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 12">Curtir</button>
-      </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/mPVkf0Fg/3.png" alt="Mensagem 3" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 3">Curtir</button>
     </div>
-
-    <form id="formMensagem" aria-label="Formulário para enviar mensagem motivacional">
-      <label for="mensagem">Sua mensagem motivacional</label>
-      <textarea id="mensagem" name="mensagem" required placeholder="Mande pra gente sua mensagem que ela vai aparecer aqui — venha ajudar o dia de alguém!"></textarea>
-
-      <label for="assinatura">Assinatura (opcional)</label>
-      <input type="text" id="assinatura" name="assinatura" placeholder="Seu nome ou anônimo" />
-
-      <button type="submit">Enviar Mensagem</button>
-
-      <div class="info-msg" id="infoMsg" aria-live="polite"></div>
-    </form>
-  </main>
-
-  <div id="imagemGrandeContainer" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
-    <img id="imagemGrande" alt="Imagem ampliada" />
-    <button class="closeBtn" aria-label="Fechar imagem ampliada">Fechar</button>
+    <div class="card">
+      <img src="https://i.postimg.cc/0bYrZ6km/4.png" alt="Mensagem 4" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 4">Curtir</button>
+    </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/zyqvQJvQ/5.png" alt="Mensagem 5" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 5">Curtir</button>
+    </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/B8VvtHpW/6.png" alt="Mensagem 6" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 6">Curtir</button>
+    </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/FdkHSzCY/7.png" alt="Mensagem 7" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 7">Curtir</button>
+    </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/2Lp87Yg2/8.png" alt="Mensagem 8" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 8">Curtir</button>
+    </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/2L4jHJDm/9.png" alt="Mensagem 9" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 9">Curtir</button>
+    </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/0rmN26J3/10.png" alt="Mensagem 10" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 10">Curtir</button>
+    </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/QH3dBXQM/11.png" alt="Mensagem 11" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 11">Curtir</button>
+    </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/kBvXKksv/12.png" alt="Mensagem 12" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 12">Curtir</button>
+    </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    emailjs.init("FnhDPuvUd77_2JkKW");
+  <form id="formMensagem" aria-label="Formulário para enviar mensagem motivacional">
+    <label for="mensagem">Sua mensagem motivacional</label>
+    <textarea id="mensagem" name="mensagem" required placeholder="Mande pra gente sua mensagem que ela vai aparecer aqui — venha ajudar o dia de alguém!"></textarea>
 
-    const gallery = document.getElementById('gallery');
-    const imagemGrandeContainer = document.getElementById('imagemGrandeContainer');
-    const imagemGrande = document.getElementById('imagemGrande');
-    const btnFechar = imagemGrandeContainer.querySelector('.closeBtn');
-    const infoMsg = document.getElementById('infoMsg');
-    const form = document.getElementById('formMensagem');
+    <label for="assinatura">Assinatura (opcional)</label>
+    <input type="text" id="assinatura" name="assinatura" placeholder="Seu nome ou anônimo" />
 
-    // Abrir imagem grande ao clicar
-    gallery.addEventListener('click', e => {
-      if(e.target.tagName === 'IMG'){
-        imagemGrande.src = e.target.src;
-        imagemGrande.alt = e.target.alt;
-        imagemGrandeContainer.classList.add('show');
+    <div class="anonimo-container">
+      <input type="checkbox" id="anonimo" />
+      <label for="anonimo">Enviar como Anônimo</label>
+    </div>
+
+    <button type="submit">Enviar Mensagem</button>
+
+    <div class="info-msg" id="infoMsg" aria-live="polite"></div>
+  </form>
+</main>
+
+<div id="imagemGrandeContainer" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <img id="imagemGrande" alt="Imagem ampliada" />
+  <button class="closeBtn" aria-label="Fechar imagem ampliada">Fechar</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("FnhDPuvUd77_2JkKW");
+
+  const gallery = document.getElementById('gallery');
+  const imagemGrandeContainer = document.getElementById('imagemGrandeContainer');
+  const imagemGrande = document.getElementById('imagemGrande');
+  const btnFechar = imagemGrandeContainer.querySelector('.closeBtn');
+  const infoMsg = document.getElementById('infoMsg');
+  const form = document.getElementById('formMensagem');
+  const inputAssinatura = form.assinatura;
+  const checkboxAnonimo = document.getElementById('anonimo');
+
+  // Abrir imagem grande ao clicar
+  gallery.addEventListener('click', e => {
+    if(e.target.tagName === 'IMG'){
+      imagemGrande.src = e.target.src;
+      imagemGrande.alt = e.target.alt;
+      imagemGrandeContainer.classList.add('show');
+    }
+  });
+
+  // Fechar imagem ampliada
+  btnFechar.addEventListener('click', () => {
+    imagemGrandeContainer.classList.remove('show');
+    imagemGrande.src = '';
+    imagemGrande.alt = '';
+  });
+
+  // Curtir botão
+  gallery.querySelectorAll('.curtir-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      if(btn.textContent === 'Curtir'){
+        btn.textContent = 'Curtiu!';
+        btn.style.backgroundColor = '#4caf50';
+      } else {
+        btn.textContent = 'Curtir';
+        btn.style.backgroundColor = '#e91e63';
       }
     });
+  });
 
-    // Fechar imagem ampliada
-    btnFechar.addEventListener('click', () => {
-      imagemGrandeContainer.classList.remove('show');
-      imagemGrande.src = '';
-      imagemGrande.alt = '';
+  // Lógica checkbox anônimo
+  checkboxAnonimo.addEventListener('change', () => {
+    if(checkboxAnonimo.checked){
+      inputAssinatura.value = 'Anônimo';
+      inputAssinatura.disabled = true;
+    } else {
+      inputAssinatura.value = '';
+      inputAssinatura.disabled = false;
+    }
+  });
+
+  // Envio do formulário
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const mensagem = form.mensagem.value.trim();
+    const assinatura = inputAssinatura.value.trim() || 'Anônimo';
+
+    if(!mensagem){
+      infoMsg.textContent = 'Por favor, escreva uma mensagem antes de enviar.';
+      return;
+    }
+
+    infoMsg.textContent = 'Enviando...';
+
+    emailjs.send("service_pq03f2d", "template_dsk1hn8", {
+      mensagem,
+      assinatura
+    }).then(() => {
+      infoMsg.textContent = 'Mensagem enviada com sucesso! Obrigada por ajudar.';
+      form.reset();
+      inputAssinatura.disabled = false;
+    }).catch(() => {
+      infoMsg.textContent = 'Erro ao enviar mensagem. Tente novamente mais tarde.';
     });
-
-    // Curtir botão
-    gallery.querySelectorAll('.curtir-btn').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        if(btn.textContent === 'Curtir'){
-          btn.textContent = 'Curtiu!';
-          btn.style.backgroundColor = '#4caf50';
-        } else {
-          btn.textContent = 'Curtir';
-          btn.style.backgroundColor = '#e91e63';
-        }
-      });
-    });
-
-    // Envio do formulário
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      const mensagem = form.mensagem.value.trim();
-      const assinatura = form.assinatura.value.trim() || 'Anônimo';
-
-      if(!mensagem){
-        infoMsg.textContent = 'Por favor, escreva uma mensagem antes de enviar.';
-        return;
-      }
-
-      infoMsg.textContent = 'Enviando...';
-
-      emailjs.send("service_pq03f2d", "template_dsk1hn8", {
-        mensagem,
-        assinatura,
-      })
-      .then(() => {
-        infoMsg.textContent = 'Mensagem enviada com sucesso! Obrigada por ajudar!';
-        form.reset();
-      })
-      .catch(() => {
-        infoMsg.textContent = 'Erro ao enviar mensagem. Tente novamente mais tarde.';
-      });
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
