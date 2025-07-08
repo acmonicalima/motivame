@@ -25,7 +25,7 @@
     max-width: 1200px;
     background: #fff;
     color: #222;
-    padding: 15px 30px;
+    padding: 20px 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,7 +41,7 @@
   }
 
   .header-left img {
-    height: 80px;
+    height: 100px;
     width: auto;
     user-select: text;
   }
@@ -49,18 +49,25 @@
   .header-left .textos {
     display: flex;
     flex-direction: column;
-    font-weight: 600;
-    font-size: 1.25rem;
+    font-weight: 700;
+    font-size: 1.4rem;
     line-height: 1.2;
     color: #222;
+  }
+
+  .header-left .textos div:last-child {
+    font-weight: 400;
+    font-size: 1rem;
+    color: #555;
+    margin-top: 4px;
   }
 
   #socialHeader {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-weight: 600;
-    font-size: 1rem;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 1.1rem;
     color: #222;
     user-select: text;
   }
@@ -81,17 +88,17 @@
   }
 
   #socialHeader svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     fill: currentColor;
   }
 
   main {
     width: 100%;
     max-width: 1200px;
-    margin: 25px 20px 50px;
+    margin: 30px 20px 60px;
     display: flex;
-    gap: 25px;
+    gap: 30px;
     flex-wrap: wrap;
     justify-content: center;
   }
@@ -99,8 +106,8 @@
   .gallery {
     flex: 1 1 700px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
     justify-items: center;
   }
 
@@ -108,8 +115,8 @@
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 3px 12px rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    box-shadow: 0 3px 14px rgba(255, 255, 255, 0.12);
     background: #222;
     display: flex;
     flex-direction: column;
@@ -119,27 +126,24 @@
   .card img {
     width: 100%;
     height: auto;
-    border-radius: 15px 15px 0 0;
-    user-select: text; /* liberado para segurar e salvar */
-    -webkit-user-select: text;
-    -moz-user-select: text;
-    -ms-user-select: text;
+    border-radius: 18px 18px 0 0;
+    user-select: text;
     transition: transform 0.3s ease;
   }
 
   .card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.06);
   }
 
   .curtir-btn {
     width: 100%;
-    padding: 10px 0;
+    padding: 14px 0;
     background: #e91e63;
     border: none;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 18px 18px;
     color: #fff;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
     user-select: none;
@@ -152,7 +156,7 @@
   #imagemGrandeContainer {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.92);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -161,7 +165,7 @@
     opacity: 0;
     transition: opacity 0.25s ease;
     flex-direction: column;
-    padding: 20px;
+    padding: 25px;
   }
 
   #imagemGrandeContainer.show {
@@ -170,22 +174,22 @@
   }
 
   #imagemGrandeContainer img {
-    max-width: 90vw;
-    max-height: 80vh;
-    border-radius: 20px;
+    max-width: 95vw;
+    max-height: 85vh;
+    border-radius: 25px;
     user-select: text;
-    box-shadow: 0 0 30px #e91e63;
+    box-shadow: 0 0 38px #e91e63;
   }
 
   #imagemGrandeContainer button.closeBtn {
-    margin-top: 18px;
-    padding: 10px 25px;
+    margin-top: 22px;
+    padding: 14px 32px;
     border: none;
-    border-radius: 30px;
+    border-radius: 35px;
     background: #e91e63;
     color: white;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
     user-select: none;
@@ -196,53 +200,54 @@
   }
 
   form {
-    flex: 0 0 380px;
+    flex: 0 0 400px;
     background: #222;
-    padding: 25px 20px;
-    border-radius: 15px;
-    box-shadow: 0 3px 20px rgba(255,255,255,0.15);
+    padding: 30px 25px;
+    border-radius: 20px;
+    box-shadow: 0 3px 26px rgba(255,255,255,0.18);
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 22px;
     color: #eee;
     user-select: none;
     height: fit-content;
+    min-width: 350px;
   }
 
   form label {
-    font-weight: 600;
-    font-size: 1.15rem;
+    font-weight: 700;
+    font-size: 1.3rem;
   }
 
   form textarea {
     resize: vertical;
-    min-height: 110px;
+    min-height: 130px;
     background: #333;
     border: none;
-    border-radius: 10px;
-    padding: 12px;
+    border-radius: 14px;
+    padding: 15px;
     color: #eee;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-family: inherit;
   }
 
   form input[type="text"] {
     background: #333;
     border: none;
-    border-radius: 10px;
-    padding: 12px;
+    border-radius: 14px;
+    padding: 15px;
     color: #eee;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-family: inherit;
   }
 
   form button {
     background: #e91e63;
     border: none;
-    padding: 14px;
-    border-radius: 15px;
+    padding: 18px;
+    border-radius: 20px;
     font-weight: 700;
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     color: #fff;
     cursor: pointer;
     user-select: none;
@@ -254,47 +259,65 @@
   }
 
   form .info-msg {
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-style: italic;
     color: #f48fb1;
     user-select: none;
+    min-height: 24px;
   }
 
-  @media (max-width: 980px) {
+  @media (max-width: 1024px) {
     main {
       flex-direction: column;
       align-items: center;
     }
     form {
       width: 90%;
+      min-width: unset;
     }
     .gallery {
-      width: 90%;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      width: 100%;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     }
   }
 
-  @media (max-width: 580px) {
+  @media (max-width: 600px) {
     header {
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
-      padding: 15px 15px;
+      gap: 12px;
+      padding: 20px 20px;
     }
     .header-left {
       flex-direction: column;
       align-items: flex-start;
-      gap: 8px;
+      gap: 10px;
       width: 100%;
     }
     #socialHeader {
       width: 100%;
       justify-content: flex-start;
-      gap: 15px;
-      font-size: 1rem;
+      gap: 18px;
+      font-size: 1.1rem;
     }
     #socialHeader span {
       white-space: nowrap;
+    }
+    form {
+      width: 95%;
+      padding: 20px;
+    }
+    .gallery {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+    }
+    .card img {
+      border-radius: 15px 15px 0 0;
+    }
+    .curtir-btn {
+      font-size: 1rem;
+      padding: 12px 0;
+      border-radius: 0 0 15px 15px;
     }
   }
 </style>
@@ -305,7 +328,7 @@
       <img src="assets/logo_motivame.png" alt="Logo Motiva.me" />
       <div class="textos">
         <div>CIEP 183 JOÃO VITTA</div>
-        <div style="font-weight: 400; font-size: 0.9rem; color: #555; margin-top: 5px;">Inspirando forças para transformar vidas.</div>
+        <div>Inspirando forças para transformar vidas.</div>
       </div>
     </div>
     <div id="socialHeader">
@@ -323,55 +346,55 @@
     <div class="gallery" id="gallery">
       <div class="card">
         <img src="https://i.postimg.cc/SY8RBRcB/1.png" alt="Mensagem 1" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 1">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/f3LLwBxj/2.png" alt="Mensagem 2" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 2">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/mPVkf0Fg/3.png" alt="Mensagem 3" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 3">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/0bYrZ6km/4.png" alt="Mensagem 4" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 4">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/zyqvQJvQ/5.png" alt="Mensagem 5" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 5">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/B8VvtHpW/6.png" alt="Mensagem 6" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 6">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/FdkHSzCY/7.png" alt="Mensagem 7" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 7">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/2Lp87Yg2/8.png" alt="Mensagem 8" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 8">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/2L4jHJDm/9.png" alt="Mensagem 9" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 9">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/0rmN26J3/10.png" alt="Mensagem 10" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 10">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/QH3dBXQM/11.png" alt="Mensagem 11" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 11">Curtir</button>
       </div>
       <div class="card">
         <img src="https://i.postimg.cc/kBvXKksv/12.png" alt="Mensagem 12" />
-        <button class="curtir-btn">Curtir</button>
+        <button class="curtir-btn" aria-label="Curtir mensagem 12">Curtir</button>
       </div>
     </div>
 
-    <form id="formMensagem">
+    <form id="formMensagem" aria-label="Formulário para enviar mensagem motivacional">
       <label for="mensagem">Sua mensagem motivacional</label>
       <textarea id="mensagem" name="mensagem" required placeholder="Mande pra gente sua mensagem que ela vai aparecer aqui — venha ajudar o dia de alguém!"></textarea>
 
@@ -380,7 +403,7 @@
 
       <button type="submit">Enviar Mensagem</button>
 
-      <div class="info-msg" id="infoMsg"></div>
+      <div class="info-msg" id="infoMsg" aria-live="polite"></div>
     </form>
   </main>
 
