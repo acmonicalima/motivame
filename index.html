@@ -31,11 +31,16 @@
     text-align: center;
     user-select: none;
   }
+ header img {
+  height: 220px; /* logo maior */
+  width: auto;
+  margin-bottom: 12px;
+  user-select: text;
+}
+@media (max-width: 600px) {
   header img {
-    height: 230px; /* Aumentei aqui */
-    width: auto;
-    margin-bottom: 12px;
-    user-select: text;
+    height: 150px; /* logo maior mas proporcional no mobile */
+    margin-bottom: 6px;
   }
   header .textos {
     font-weight: 700;
