@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Motiva.me - Inspire-se!</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 20px;
+    background-color: #0a0a0a;
+    font-family: 'Poppins', sans-serif;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  header {
+    width: 100%;
+    max-width: 1200px;
+    background: #fff;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    user-select: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  header img.logo {
+    height: 180px;
+    object-fit: contain;
+  }
+  .header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #222;
+    user-select: text;
+  }
+  .ciep {
+    font-weight: 700;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+  .frase {
+    font-style: italic;
+    font-size: 1rem;
+    color: #555;
+    margin-top: 6px;
+  }
+
+  #socialHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    color: #3399ff;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  #socialHeader span {
+    user-select: none;
+  }
+  .btnInstagram {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 0 3px #3399ff);
+    transition: filter 0.3s ease;
+  }
+  .btnInstagram svg {
+    fill: #3399ff;
+    width: 30px;
+    height: 30px;
+  }
+  .btnInstagram:hover {
+    filter: drop-shadow(0 0 8px #66b3ff);
+  }
+
+  #mainContainer {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1.4fr;
+    gap: 25px;
+    margin-top: 25px;
+    padding: 0 20px;
+    flex-grow: 1;
+  }
+  #cardsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(180px,1fr));
+    gap: 20px;
+  }
+  .card {
+    background: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: default;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(51,153,255,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+  }
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+  }
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 22px rgba(51,153,255,0.6);
+    filter: drop-shadow(0 0 6px #3399ff);
+  }
+  .btnCurtir {
+    margin: 10px 0 15px 0;
+    background: #3399ff;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 26px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 10px #3399ff;
+    transition: background 0.3s ease;
+    user-select: none;
+    width: 90%;
+    max-width: 180px;
+  }
+  .btnCurtir.liked {
+    background: #267acc;
+    box-shadow: 0 0 18px #267acc;
+  }
+  .btnCurtir:hover {
+    background: #267acc;
+  }
+  #formSection {
+    background: #111;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 0 18px rgba(51,153,255,0.6);
+    display: flex;
+    flex-direction: column;
+    color: #eee;
+  }
+  #formSection h2 {
+    margin-top: 0;
+    font-weight: 700;
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: #3399ff;
+    text-align: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  #infoMsg {
+    font-size: 1rem;
+    color: #ccc;
+    font-style: italic;
+    margin-bottom: 12px;
+    user-select: none;
+    text-align: center;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background: #222;
+    color: #eee;
+  }
+  input[type="text"] {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    background: #222;
+    color: #eee;
+  }
+  label {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    font-size: 1rem;
+  }
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+  button[type="submit"] {
+    background: #3399ff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+  }
+  button[type="submit"]:hover {
+    background: #267acc;
+  }
+  #msgFeedback {
+    font-weight: 700;
+    color: #3399ff;
+    text-align: center;
+    min-height: 24px;
+  }
+  @media (max-width: 950px) {
+    #mainContainer {
+      grid-template-columns: 1fr;
+    }
+    #formSection {
+      margin-top: 30px;
+      width: 100%;
+    }
+  }
+  @media (max-width: 480px) {
+    #cardsContainer {
+      grid-template-columns: repeat(auto-fill,minmax(140px,1fr));
+      gap: 12px;
+    }
+    .card img {
+      height: 150px;
+    }
+  }
+  footer {
+    margin-top: 25px;
+    color: #555;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+  }
+  .marca-registrada {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #3399ff;
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="header-left">
+    <img src="assets/logo_motivame.png" alt="Logo Motiva.me" class="logo" />
+    <div class="header-text">
+      <div class="ciep">CIEP 183 JOÃO VITTA</div>
+      <div class="frase">Inspirando forças para transformar vidas.</div>
+    </div>
+  </div>
+  <div id="socialHeader">
+    <span>Siga-nos</span>
+    <button class="btnInstagram" aria-label="Instagram João Vitta" onclick="window.open('https://www.instagram.com/joaovitta183', '_blank')">
+      <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+        <title>Instagram</title>
+        <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10 5 5 0 010-10zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm4.75-.88a1.12 1.12 0 110 2.24 1.12 1.12 0 010-2.24z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<div id="mainContainer">
+  <main id="cardsContainer"></main>
+
+  <section id="formSection">
+    <h2>Envie sua frase motivacional</h2>
+    <div id="infoMsg">Mande pra gente sua mensagem que ela vai aparecer aqui - venha ajudar o dia de alguém!</div>
+    <form id="formMotiva" onsubmit="enviarMensagem(event)">
+      <textarea id="mensagem" placeholder="Escreva sua frase aqui..." required></textarea>
+      <input id="assinatura" type="text" placeholder="Assinatura (opcional)" />
+      <label><input type="checkbox" id="anonimoCheckbox" onchange="toggleAnonimo()" /> Enviar como anônimo</label>
+      <button type="submit">Enviar</button>
+      <p id="msgFeedback"></p>
+    </form>
+  </section>
+</div>
+
+<footer>
+  <span class="marca-registrada">®</span>
+  <span>Mônica Lima - Ctrl X</span>
+</footer>
+
+<script>
+  emailjs.init("FnhDPuvUd77_2JkKW");
+
+  const mensagens = [
+    "https://i.postimg.cc/SY8RBRcB/1.png",
+    "https://i.postimg.cc/f3LLwBxj/2.png",
+    "https://i.postimg.cc/mPVkf0Fg/3.png",
+    "https://i.postimg.cc/0bYrZ6km/4.png",
+    "https://i.postimg.cc/zyqvQJvQ/5.png",
+    "https://i.postimg.cc/B8VvtHpW/6.png",
+    "https://i.postimg.cc/FdkHSzCY/7.png",
+    "https://i.postimg.cc/2Lp87Yg2/8.png",
+    "https://i.postimg.cc/2L4jHJDm/9.png",
+    "https://i.postimg.cc/0rmN26J3/10.png",
+    "https://i.postimg.cc/QH3dBXQM/11.png",
+    "https://i.postimg.cc/kBvXKksv/12.png"
+  ];
+
+  const cardsContainer = document.getElementById('cardsContainer');
+
+  function criarCard(url, index) {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = `Mensagem motivacional ${index + 1}`;
+    card.appendChild(img);
+
+    const btnCurtir = document.createElement('button');
+    btnCurtir.className = 'btnCurtir';
+    btnCurtir.textContent = '❤️ Curtir';
+    btnCurtir.setAttribute('aria-pressed', 'false');
+    let curtido = false;
+
+    btnCurtir.addEventListener('click', (e) => {
+      e.stopPropagation();
+      curtido = !curtido;
+      if (curtido) {
+        btnCurtir.classList.add('liked');
+        btnCurtir.textContent = '❤️ Curtido';
+        btnCurtir.setAttribute('aria-pressed', 'true');
+      } else {
+        btnCurtir.classList.remove('liked');
+        btnCurtir.textContent = '❤️ Curtir';
+        btnCurtir.setAttribute('aria-pressed', 'false');
+      }
+    });
+
+    card.appendChild(btnCurtir);
+
+    return card;
+  }
+
+  mensagens.forEach((url, i) => {
+    cardsContainer.appendChild(criarCard(url, i));
+  });
+
+  function toggleAnonimo() {
+    const checkbox = document.getElementById('anonimoCheckbox');
+    const assinaturaInput = document.getElementById('assinatura');
+    if (checkbox.checked) {
+      assinaturaInput.value = "Anônimo";
+      assinaturaInput.disabled = true;
+    } else {
+      assinaturaInput.value = "";
+      assinaturaInput.disabled = false;
+    }
+  }
+
+  function enviarMensagem(event) {
+    event.preventDefault();
+    const mensagem = document.getElementById('mensagem').value.trim();
+    let assinatura = document.getElementById('assinatura').value.trim();
+
+    if (!mensagem) return;
+
+    if (!assinatura) assinatura = "Sem assinatura";
+
+    const templateParams = {
+      mensagem: mensagem,
+      assinatura: assinatura
+    };
+
+    emailjs.send('service_pq03f2d', 'template_dsk1hn8', templateParams)
+      .then(() => {
+        document.getElementById('msgFeedback').textContent = "Mensagem enviada com sucesso!";
+        document.getElementById('formMotiva').reset();
+      }, (error) => {
+        document.getElementById('msgFeedback').textContent = "Erro ao enviar, tente novamente.";
+        console.error('EmailJS error:', error);
+      });
+  }
+</script>
+</body>
+</html>
