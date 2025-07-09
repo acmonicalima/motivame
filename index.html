@@ -8,6 +8,7 @@
     /* === RESET === */
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#111;color:#eee;display:flex;flex-direction:column;min-height:100vh}
+
     /* === HEADER === */
     header{background:#fff;color:#222;padding:30px 20px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.12)}
     header img{height:180px;margin-bottom:12px}
@@ -16,29 +17,35 @@
     #socialHeader{margin-top:15px;display:flex;justify-content:center;align-items:center;gap:10px;font-size:1.1rem}
     #socialHeader a{display:flex;align-items:center;gap:6px;color:#222;text-decoration:none;transition:color .3s}
     #socialHeader a:hover{color:#e91e63}
+
     /* === GALLERY Masonry === */
     main{width:100%;max-width:1200px;margin:40px auto;padding:0 20px}
     .gallery{column-count:3;column-gap:20px}
     @media(max-width:900px){.gallery{column-count:2}}
     @media(max-width:600px){.gallery{column-count:1}}
+
     .card{break-inside:avoid;margin-bottom:20px;background:#222;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 3px 14px rgba(255,255,255,.12);cursor:pointer;transition:transform .2s}
     .card:hover{transform:scale(1.03)}
     .card img{width:100%;display:block;border-radius:18px 18px 0 0;transition:transform .3s}
     .card:hover img{transform:scale(1.06)}
+
     /* Curtir coração */
     .curtir-btn{width:100%;background:transparent;border:none;padding:12px 0;display:flex;justify-content:center;align-items:center;font-size:0;color:#e91e63;cursor:pointer;transition:color .3s}
     .curtir-btn:hover{color:#c2185b}
     .curtir-btn svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2}
     .curtir-btn.clicked{color:#e91e63}
     .curtir-btn.clicked svg{fill:currentColor;stroke:currentColor}
+
     /* === MODAL === */
     #imagemGrandeContainer{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:opacity .3s;z-index:1000;padding:25px}
     #imagemGrandeContainer.show{visibility:visible;opacity:1}
     #imagemGrandeContainer img{max-width:95vw;max-height:85vh;border-radius:20px;box-shadow:0 0 40px #e91e63}
     .closeBtn{margin-top:24px;padding:12px 32px;background:#e91e63;border:none;border-radius:30px;color:#fff;font-weight:700;cursor:pointer;transition:background .3s}
     .closeBtn:hover{background:#c2185b}
+
     /* === FOOTER & FORM === */
     footer{background:#1c1c1c;color:#eee;padding:35px 25px;display:flex;flex-direction:column;align-items:center;gap:30px}
+
     form{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;width:100%;max-width:800px;background:#222;padding:25px;border-radius:15px;box-shadow:0 0 15px rgba(255,255,255,.08)}
     form label{grid-column:span 2;font-weight:700;font-size:1.05rem}
     form textarea{grid-column:span 2;min-height:120px;padding:12px;border-radius:10px;border:none;background:#333;color:#fff;font-size:1rem;resize:vertical}
@@ -48,11 +55,10 @@
     form button{grid-column:span 2;background:#e91e63;border:none;padding:14px;border-radius:10px;font-weight:700;color:#fff;font-size:1.1rem;cursor:pointer;transition:background .3s}
     form button:hover{background:#c2185b}
     .info-msg{grid-column:span 2;font-size:.9rem;font-style:italic;height:20px}
+
     .creditos{font-size:.9rem;color:#bbb;text-align:center;margin-top:10px}
-    @media(max-width:600px){
-      form{grid-template-columns:1fr}
-      form input[type="text"],.anonimo-container,form button{grid-column:span 1}
-    }
+
+    @media(max-width:600px){form{grid-template-columns:1fr}form input[type="text"],.anonimo-container,form button{grid-column:span 1}}
   </style>
 </head>
 <body>
@@ -61,26 +67,62 @@
     <div class="textos">CIEP 183 JOÃO VITTA<br><span class="subtext">Inspirando forças para transformar vidas.</span></div>
     <div id="socialHeader">
       <span>Siga-nos</span>
-      <a href="https://www.instagram.com/joaovitta183 " target="_blank" rel="noopener noreferrer" aria-label="Instagram João Vitta">
+      <a href="https://www.instagram.com/joaovitta183" target="_blank" rel="noopener noreferrer" aria-label="Instagram João Vitta">
         <svg viewBox="0 0 24 24"><path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0120 7.75v8.5a3.75 3.75 0 01-3.75 3.75h-8.5A3.75 3.75 0 014 16.25v-8.5A3.75 3.75 0 017.75 4zm8.75 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/></svg>
       </a>
     </div>
   </header>
 
   <main>
-    <!-- Mural de Imagens -->
     <div class="gallery" id="gallery">
-      <!-- As imagens serão inseridas aqui via JavaScript -->
+      <div class="card"><img src="https://i.postimg.cc/mz6FRr7M/1.jpg" alt="Imagem 1"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/BLtXhGRv/10.jpg" alt="Imagem 2"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/KkV4wHyD/11.jpg" alt="Imagem 3"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/N2HLcksq/12.jpg" alt="Imagem 4"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/Sj2nCkWT/13.jpg" alt="Imagem 5"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/gn3rtst3/14.jpg" alt="Imagem 6"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/hXgvkmN6/15.jpg" alt="Imagem 7"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/fVKyDLNL/16.jpg" alt="Imagem 8"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/0rTbCFn8/17.jpg" alt="Imagem 9"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/CZrKnQdp/18.jpg" alt="Imagem 10"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/LYq8t3ZY/19.jpg" alt="Imagem 11"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/6TyvcdNh/2.jpg" alt="Imagem 12"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/Z95RRSbL/20.jpg" alt="Imagem 13"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/vgpH3xWP/21.jpg" alt="Imagem 14"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/s1h21Krb/22.jpg" alt="Imagem 15"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/6yxpZR6q/23.jpg" alt="Imagem 16"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/XBdNhNLn/24.jpg" alt="Imagem 17"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/4mvNQdn5/25.jpg" alt="Imagem 18"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/G4c37Cy1/26.jpg" alt="Imagem 19"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/sMwjbNYG/27.jpg" alt="Imagem 20"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/VSvfwWgG/28.jpg" alt="Imagem 21"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/xk3vrYsy/29.jpg" alt="Imagem 22"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/dZkZ0K9f/3.jpg" alt="Imagem 23"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/5YP80gWX/30.jpg" alt="Imagem 24"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/F1Rj6M03/31.jpg" alt="Imagem 25"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/VrsjmTpy/32.jpg" alt="Imagem 26"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/XBpdy5nQ/33.jpg" alt="Imagem 27"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/BtVxfmCy/34.jpg" alt="Imagem 28"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/8jfLpLKC/35.jpg" alt="Imagem 29"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/LJzff2MK/37.jpg" alt="Imagem 31"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/8F46K45Z/38.jpg" alt="Imagem 32"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/QdPh3YZh/39.jpg" alt="Imagem 33"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/xTx6Prr3/4.jpg" alt="Imagem 34"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/7YbF6YJT/40.jpg" alt="Imagem 35"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/BQ4H0ZhT/5.jpg" alt="Imagem 36"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/D0kgNY7L/6.jpg" alt="Imagem 37"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/fRpJdLv9/7.jpg" alt="Imagem 38"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/hvZgbT6r/8.jpg" alt="Imagem 39"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
+      <div class="card"><img src="https://i.postimg.cc/0NwRJscd/9.jpg" alt="Imagem 40"><button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button></div>
     </div>
   </main>
 
-  <!-- Modal de imagem ampliada -->
+  <!-- MODAL -->
   <div id="imagemGrandeContainer" aria-modal="true" role="dialog" aria-label="Visualização ampliada da imagem">
     <img src="" alt="" id="imagemGrande" />
     <button class="closeBtn" aria-label="Fechar visualização">Fechar</button>
   </div>
 
-  <!-- Formulário -->
   <footer>
     <form id="formMotivacao" aria-label="Formulário de envio de mensagem">
       <label for="mensagem">Deixe sua mensagem de motivação para os jovens:</label>
@@ -97,97 +139,70 @@
       <button type="submit">Enviar</button>
       <div class="info-msg" id="infoMsg" aria-live="polite"></div>
     </form>
+
     <div class="creditos">© Mônica Lima - Ctrl X <span id="anoAtual"></span></div>
   </footer>
 
-  <!-- SCRIPT DINÂMICO ABAIXO -->
   <script>
-    // Atualiza ano no rodapé
+    // Atualiza o ano atual no rodapé
     document.getElementById('anoAtual').textContent = new Date().getFullYear();
 
-    // Função de curtir
-    function setupLikeButtons() {
-      document.querySelectorAll('.curtir-btn').forEach(btn => {
-        btn.addEventListener('click', e => {
-          e.stopPropagation();
-          btn.classList.toggle('clicked');
-        });
+    // Curtir botão funcionalidade
+    document.querySelectorAll('.curtir-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation(); // evita abrir modal ao clicar no coração
+        btn.classList.toggle('clicked');
       });
-    }
+    });
 
-    // Função do modal de imagem
-    const modal = document.getElementById('imagemGrandeContainer') || document.createElement('div');
-    const imagemGrande = document.getElementById('imagemGrande') || document.createElement('img');
+    // Modal imagem
+    const modal = document.getElementById('imagemGrandeContainer');
+    const imagemGrande = document.getElementById('imagemGrande');
     const closeBtn = modal.querySelector('.closeBtn');
 
-    function setupModal() {
-      document.querySelectorAll('.card img').forEach(img => {
-        img.addEventListener('click', () => {
-          imagemGrande.src = img.src;
-          imagemGrande.alt = img.alt;
-          modal.classList.add('show');
-          closeBtn.focus();
-        });
+    document.querySelectorAll('.card img').forEach(img => {
+      img.addEventListener('click', () => {
+        imagemGrande.src = img.src;
+        imagemGrande.alt = img.alt;
+        modal.classList.add('show');
+        closeBtn.focus();
       });
+    });
 
-      closeBtn.addEventListener('click', () => {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+      imagemGrande.src = '';
+    });
+
+    // Fecha modal ao clicar fora da imagem
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
         modal.classList.remove('show');
         imagemGrande.src = '';
-      });
-
-      modal.addEventListener('click', e => {
-        if (e.target === modal) {
-          modal.classList.remove('show');
-          imagemGrande.src = '';
-        }
-      });
-    }
-
-    // Carrega dados do Google Sheets
-    async function carregarImagensDoGoogleSheets() {
-      const gallery = document.getElementById('gallery');
-      const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTXIrIUjF9AK224uSnpV8yyCTGVWR2MNa_xn-LzVG38Akp9LoSztjBrUPWKwfV9pl8ZkoRgq00_ATlG/pub?output=csv';
-
-      try {
-        const resposta = await fetch(sheetUrl);
-        const data = await resposta.text();
-        const linhas = data.split('\\n').map(linha => linha.split(','));
-        const cabecalhos = linhas[0];
-        const registros = linhas.slice(1);
-
-        const idxTitulo = cabecalhos.indexOf("Título");
-        const idxURL = cabecalhos.indexOf("URL");
-
-        registros.forEach(registro => {
-          const titulo = registro[idxTitulo];
-          const urlImagem = registro[idxURL];
-
-          if (!titulo || !urlImagem) return;
-
-          // Cria card
-          const card = document.createElement('div');
-          card.className = 'card';
-          card.innerHTML = `
-            <img src="${urlImagem}" alt="${titulo}">
-            <button class="curtir-btn" aria-label="Curtir">
-              <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            </button>
-          `;
-
-          gallery.appendChild(card);
-        });
-
-        // Reaplica eventos de curtir e modal
-        setupLikeButtons();
-        setupModal();
-
-      } catch (err) {
-        console.error('Erro ao carregar planilha:', err);
       }
-    }
+    });
 
-    window.addEventListener('load', carregarImagensDoGoogleSheets);
+    // Formulário básico (exemplo com mensagem simulada)
+    const form = document.getElementById('formMotivacao');
+    const infoMsg = document.getElementById('infoMsg');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const mensagem = form.mensagem.value.trim();
+      if (!mensagem) {
+        infoMsg.textContent = 'Por favor, escreva uma mensagem.';
+        return;
+      }
+
+      // Simula envio
+      infoMsg.textContent = 'Enviando...';
+
+      setTimeout(() => {
+        infoMsg.textContent = 'Mensagem enviada com sucesso! Obrigado!';
+        form.reset();
+      }, 1200);
+    });
   </script>
-
 </body>
 </html>
