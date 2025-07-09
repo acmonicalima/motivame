@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Motiva.me - CIEP 183 João Vitta</title>
   <style>
-    /* ===== RESET ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #111;
@@ -16,181 +16,270 @@
       min-height: 100vh;
     }
 
-    /* ===== HEADER ===== */
     header {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 30px 25px;
       background: #fff;
       color: #222;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    header img {
+      height: 180px;
+      margin-bottom: 15px;
+    }
+
+    .textos {
+      font-weight: 700;
+      font-size: 1.6rem;
+    }
+
+    .subtext {
+      font-weight: 400;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    #socialHeader {
       display: flex;
-      flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
-      gap: 20px;
-      border-radius: 0 0 20px 20px;
+      gap: 12px;
+      margin-top: 10px;
+      font-size: 1.1rem;
     }
-    header img { height: 120px; width: auto; }
-    .textos { font-size: 1.5rem; font-weight: 700; line-height: 1.25; }
-    .subtext { font-size: 1rem; font-weight: 400; color: #555; }
 
-    /* Instagram link */
-    #socialHeader { display: flex; align-items: center; gap: 8px; }
     #socialHeader a {
-      display: flex; align-items: center; gap: 4px;
-      text-decoration: none; color: #222; font-weight: 700;
-      transition: color .3s;
+      color: #222;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
-    #socialHeader a:hover { color: #e91e63; }
-    #socialHeader svg { width: 26px; height: 26px; fill: currentColor; }
 
-    /* ===== GALLERY ===== */
-    main { width: 100%; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-    .gallery { column-count: 3; column-gap: 20px; }
-    @media(max-width: 900px){ .gallery{ column-count: 2; } }
-    @media(max-width: 600px){ .gallery{ column-count: 1; } }
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 25px;
+      justify-items: center;
+    }
 
     .card {
-      break-inside: avoid; margin-bottom: 20px; position: relative;
-      background: #222; border-radius: 18px; overflow: hidden;
-      box-shadow: 0 3px 12px rgba(255,255,255,0.15); cursor: pointer;
-      transition: transform .2s;
+      background: #222;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 2px 12px rgba(255,255,255,0.1);
     }
-    .card:hover { transform: scale(1.03); }
-    .card img { width: 100%; display: block; border-radius: 18px 18px 0 0; transition: transform .3s; }
-    .card:hover img { transform: scale(1.07); }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.04);
+    }
 
     .curtir-btn {
-      width: 100%; background: transparent; border: none; color: #e91e63;
-      padding: 12px 0; font-size: 24px; display: flex; justify-content: center;
-      align-items: center; transition: color .3s;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #e91e63;
+      transition: transform 0.2s ease;
     }
-    .curtir-btn:hover { color: #c2185b; }
-    .curtir-btn.liked { color: #4caf50; }
 
-    /* ===== MODAL ===== */
-    #imagemGrandeContainer {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.9);
-      display: flex; align-items: center; justify-content: center; flex-direction: column;
-      visibility: hidden; opacity: 0; transition: opacity .3s; z-index: 999;
-      padding: 20px;
+    .curtir-btn.clicked {
+      color: #4caf50;
     }
-    #imagemGrandeContainer.show { visibility: visible; opacity: 1; }
-    #imagemGrandeContainer img { max-width: 95vw; max-height: 85vh; border-radius: 20px; box-shadow: 0 0 40px #e91e63; }
-    .closeBtn { margin-top: 20px; background: #e91e63; border: none; color: #fff;
-      padding: 10px 28px; border-radius: 30px; font-weight: 700; cursor: pointer;
-      transition: background .3s; }
-    .closeBtn:hover { background: #c2185b; }
 
-    /* ===== FOOTER + FORM ===== */
-    footer { width: 100%; background: #222; padding: 25px 20px; color: #eee; }
-    form { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; max-width: 1200px; margin: 0 auto; }
-    form textarea, form input[type="text"] {
-      flex: 1 1 260px; padding: 10px 14px; border-radius: 12px; border: none;
-      font-family: inherit; font-size: 1rem; color: #222;
+    /* Rodapé com formulário */
+    footer {
+      background: #1c1c1c;
+      color: #eee;
+      padding: 30px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+      align-items: flex-start;
     }
-    form textarea { min-height: 60px; resize: vertical; }
-    form button { background: #e91e63; color: #fff; border: none; font-weight: 700;
-      padding: 12px 26px; border-radius: 12px; cursor: pointer; transition: background .3s; }
-    form button:hover { background: #c2185b; }
-    .anonimo-container { display: flex; align-items: center; gap: 6px; }
-    .anonimo-container input { width: 18px; height: 18px; cursor: pointer; }
 
-    #rodapeInferior { padding: 15px 20px; background: #111; color: #bbb; text-align: center; font-size: .9rem; }
-    #rodapeInferior img { height: 18px; filter: brightness(0) invert(1); margin-left: 6px; }
+    form {
+      flex: 1 1 350px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      background: #222;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.1);
+    }
 
-    @media(max-width: 700px){ form textarea, form input[type="text"]{ flex: 1 1 100%; } form button{ flex: 1 1 100%; } }
+    form label {
+      grid-column: span 2;
+      font-weight: bold;
+    }
+
+    form textarea,
+    form input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: #333;
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    form textarea {
+      resize: vertical;
+      min-height: 120px;
+      grid-column: span 2;
+    }
+
+    .anonimo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      grid-column: span 2;
+      font-size: 0.9rem;
+    }
+
+    form button {
+      grid-column: span 2;
+      background: #e91e63;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background: #c2185b;
+    }
+
+    .info-msg {
+      grid-column: span 2;
+      font-size: 0.9rem;
+      font-style: italic;
+      min-height: 22px;
+    }
+
+    .creditos {
+      font-size: 0.95rem;
+      color: #bbb;
+      margin-top: 25px;
+      flex: 1 1 100%;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
+
   <header>
-    <img src="assets/logo_motivame.png" alt="logo Motiva.me">
+    <img src="assets/logo_motivame.png" alt="Logo Motiva.me">
     <div class="textos">
-      CIEP 183 JOÃO VITTA<br>
-      <span class="subtext">Inspirando vidas.</span>
+      CIEP 183 JOÃO VITTA
+      <div class="subtext">Inspirando forças para transformar vidas.</div>
     </div>
     <div id="socialHeader">
-      <a href="https://www.instagram.com/joaovitta183" target="_blank" rel="noopener noreferrer" aria-label="Instagram João Vitta">
-        <svg viewBox="0 0 24 24"><path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0120 7.75v8.5a3.75 3.75 0 01-3.75 3.75h-8.5A3.75 3.75 0 014 16.25v-8.5A3.75 3.75 0 017.75 4zm8.75 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/></svg>
+      <span>Siga-nos</span>
+      <a href="https://www.instagram.com/joaovitta183" target="_blank">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0120 7.75v8.5a3.75 3.75 0 01-3.75 3.75h-8.5A3.75 3.75 0 014 16.25v-8.5A3.75 3.75 0 017.75 4zm8.75 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/></svg>
+        Instagram
       </a>
     </div>
   </header>
 
-  <main>
-    <div class="gallery" id="gallery">
-      <!-- Exemplo de card -->
-      <div class="card">
-        <img src="https://i.postimg.cc/SY8RBRcB/1.png" alt="Mensagem 1">
-        <button class="curtir-btn" title="Curtir" aria-label="Curtir"><!-- coração -->
-          ❤
-        </button>
-      </div>
-      <!-- Adicione mais <div class="card">...</div> -->
+  <main id="gallery">
+    <!-- Cards com imagens -->
+    <div class="card">
+      <img src="https://i.postimg.cc/SY8RBRcB/1.png" alt="Mensagem 1">
+      <button class="curtir-btn" aria-label="Curtir">❤️</button>
     </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/f3LLwBxj/2.png" alt="Mensagem 2">
+      <button class="curtir-btn" aria-label="Curtir">❤️</button>
+    </div>
+    <!-- Adicione mais imagens conforme desejar -->
   </main>
 
-  <!-- Modal imagem grande -->
-  <div id="imagemGrandeContainer" role="dialog" aria-modal="true">
-    <img id="imagemGrande" alt="Imagem ampliada">
-    <button class="closeBtn">Fechar</button>
-  </div>
-
-  <!-- Formulário -->
   <footer>
     <form id="formMensagem">
-      <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem inspiradora..." required></textarea>
-      <input type="text" id="assinatura" name="assinatura" placeholder="Assinatura (opcional)">
-      <div class="anonimo-container"><input type="checkbox" id="anonimo"><label for="anonimo">Anônimo</label></div>
-      <button type="submit">Enviar</button>
+      <label for="mensagem">Sua mensagem motivacional</label>
+      <textarea id="mensagem" name="mensagem" required></textarea>
+      <label for="assinatura">Assinatura (opcional)</label>
+      <input type="text" id="assinatura" name="assinatura" placeholder="Seu nome ou anônimo" />
+      <div class="anonimo-container">
+        <input type="checkbox" id="anonimo" />
+        <label for="anonimo">Enviar como Anônimo</label>
+      </div>
+      <button type="submit">Enviar Mensagem</button>
+      <div class="info-msg" id="infoMsg"></div>
     </form>
+    <div class="creditos">© Mônica Lima - Ctrl X 2025</div>
   </footer>
-
-  <div id="rodapeInferior">
-    <span>Mônica Lima - Ctrl X</span>
-    <img src="assets/registrado.png" alt="Registrado">
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     emailjs.init("FnhDPuvUd77_2JkKW");
-    const gallery = document.getElementById('gallery');
-    const modal = document.getElementById('imagemGrandeContainer');
-    const imgBig = document.getElementById('imagemGrande');
-    const closeBtn = modal.querySelector('.closeBtn');
-
-    gallery.addEventListener('click', e => {
-      if(e.target.tagName === 'IMG'){
-        imgBig.src = e.target.src;
-        imgBig.alt = e.target.alt;
-        modal.classList.add('show');
-      }
-    });
-    closeBtn.addEventListener('click', ()=> modal.classList.remove('show'));
-
-    gallery.addEventListener('click', e => {
-      const btn = e.target.closest('.curtir-btn');
-      if(btn){ e.stopPropagation(); btn.classList.toggle('liked'); }
-    });
 
     const form = document.getElementById('formMensagem');
-    const anonChk = document.getElementById('anonimo');
-    const assinaturaInput = document.getElementById('assinatura');
+    const inputAssinatura = form.assinatura;
+    const checkboxAnonimo = document.getElementById('anonimo');
+    const infoMsg = document.getElementById('infoMsg');
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      const msg = form.mensagem.value.trim();
-      let assinatura = assinaturaInput.value.trim();
-      if(anonChk.checked) assinatura = 'Anônimo';
-      if(!msg){ alert('Escreva uma mensagem antes de enviar.'); return; }
-      emailjs.send('service_pq03f2d','template_dsk1hn8',{mensagem: msg, assinatura})
-      .then(()=>{ alert('Mensagem enviada! Obrigado.'); form.reset(); })
-      .catch(()=>{ alert('Erro ao enviar. Tente novamente.'); });
+      let mensagem = form.mensagem.value.trim();
+      let assinatura = checkboxAnonimo.checked ? "Anônimo" : form.assinatura.value.trim();
+      if (!mensagem) {
+        infoMsg.textContent = "Por favor, escreva uma mensagem.";
+        infoMsg.style.color = "#f44336";
+        return;
+      }
+
+      emailjs.send('service_pq03f2d', 'template_dsk1hn8', {
+        mensagem,
+        assinatura
+      }).then(() => {
+        infoMsg.textContent = "Mensagem enviada com sucesso!";
+        infoMsg.style.color = "#4caf50";
+        form.reset();
+        inputAssinatura.disabled = false;
+      }).catch(() => {
+        infoMsg.textContent = "Erro ao enviar mensagem.";
+        infoMsg.style.color = "#f44336";
+      });
     });
 
-    anonChk.addEventListener('change', ()=>{
-      assinaturaInput.disabled = anonChk.checked;
-      if(anonChk.checked) assinaturaInput.value = '';
+    checkboxAnonimo.addEventListener('change', () => {
+      inputAssinatura.disabled = checkboxAnonimo.checked;
+      if (checkboxAnonimo.checked) inputAssinatura.value = '';
+    });
+
+    // Curtir coração
+    document.querySelectorAll('.curtir-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('clicked');
+      });
     });
   </script>
 </body>
