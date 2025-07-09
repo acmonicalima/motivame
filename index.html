@@ -5,233 +5,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Motiva.me - CIEP 183 João Vitta</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* === RESET === */
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#111;color:#eee;display:flex;flex-direction:column;min-height:100vh}
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #111;
-      color: #eee;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+    /* === HEADER === */
+    header{background:#fff;color:#222;padding:30px 20px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+    header img{height:180px;margin-bottom:12px}
+    .textos{font-weight:700;font-size:1.6rem}
+    .subtext{font-size:1.05rem;color:#555}
+    #socialHeader{margin-top:15px;display:flex;justify-content:center;align-items:center;gap:10px;font-size:1.1rem}
+    #socialHeader a{display:flex;align-items:center;gap:6px;color:#222;text-decoration:none;transition:color .3s}
+    #socialHeader a:hover{color:#e91e63}
 
-    header {
-      background: #fff;
-      color: #222;
-      text-align: center;
-      padding: 30px 15px;
-    }
+    /* === GALLERY Masonry === */
+    main{width:100%;max-width:1200px;margin:40px auto;padding:0 20px}
+    .gallery{column-count:3;column-gap:20px}
+    @media(max-width:900px){.gallery{column-count:2}}
+    @media(max-width:600px){.gallery{column-count:1}}
 
-    header img {
-      height: 180px;
-      margin-bottom: 15px;
-    }
+    .card{break-inside:avoid;margin-bottom:20px;background:#222;border-radius:18px;overflow:hidden;position:relative;box-shadow:0 3px 14px rgba(255,255,255,.12);cursor:pointer;transition:transform .2s}
+    .card:hover{transform:scale(1.03)}
+    .card img{width:100%;display:block;border-radius:18px 18px 0 0;transition:transform .3s}
+    .card:hover img{transform:scale(1.06)}
 
-    .textos {
-      font-weight: 700;
-      font-size: 1.6rem;
-    }
+    /* Curtir coração */
+    .curtir-btn{width:100%;background:transparent;border:none;padding:12px 0;display:flex;justify-content:center;align-items:center;font-size:0;color:#e91e63;cursor:pointer;transition:color .3s}
+    .curtir-btn:hover{color:#c2185b}
+    .curtir-btn svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2}
+    .curtir-btn.clicked{color:#4caf50}
+    .curtir-btn.clicked svg{fill:currentColor;stroke:currentColor}
 
-    .subtext {
-      font-weight: 400;
-      font-size: 1.1rem;
-      color: #555;
-    }
+    /* === MODAL === */
+    #imagemGrandeContainer{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:opacity .3s;z-index:1000;padding:25px}
+    #imagemGrandeContainer.show{visibility:visible;opacity:1}
+    #imagemGrandeContainer img{max-width:95vw;max-height:85vh;border-radius:20px;box-shadow:0 0 40px #e91e63}
+    .closeBtn{margin-top:24px;padding:12px 32px;background:#e91e63;border:none;border-radius:30px;color:#fff;font-weight:700;cursor:pointer;transition:background .3s}
+    .closeBtn:hover{background:#c2185b}
 
-    #socialHeader {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin-top: 10px;
-      font-size: 1.1rem;
-    }
+    /* === FOOTER & FORM === */
+    footer{background:#1c1c1c;color:#eee;padding:35px 25px;display:flex;flex-direction:column;align-items:center;gap:30px}
 
-    #socialHeader a {
-      color: #222;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
+    form{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;width:100%;max-width:800px;background:#222;padding:25px;border-radius:15px;box-shadow:0 0 15px rgba(255,255,255,.08)}
+    form label{grid-column:span 2;font-weight:700;font-size:1.05rem}
+    form textarea{grid-column:span 2;min-height:120px;padding:12px;border-radius:10px;border:none;background:#333;color:#fff;font-size:1rem;resize:vertical}
+    form input[type="text"]{padding:12px;border-radius:10px;border:none;background:#333;color:#fff;font-size:1rem}
+    .anonimo-container{grid-column:span 2;display:flex;align-items:center;gap:8px;font-size:.9rem}
+    .anonimo-container input{width:18px;height:18px;cursor:pointer}
+    form button{grid-column:span 2;background:#e91e63;border:none;padding:14px;border-radius:10px;font-weight:700;color:#fff;font-size:1.1rem;cursor:pointer;transition:background .3s}
+    form button:hover{background:#c2185b}
+    .info-msg{grid-column:span 2;font-size:.9rem;font-style:italic;height:20px}
 
-    main {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 20px;
-      padding: 25px;
-      justify-items: center;
-    }
+    .creditos{font-size:.9rem;color:#bbb;text-align:center;margin-top:10px}
 
-    .card {
-      background: #222;
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 2px 12px rgba(255,255,255,0.1);
-    }
-
-    .card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover img {
-      transform: scale(1.04);
-    }
-
-    .curtir-btn {
-      position: absolute;
-      bottom: 10px;
-      right: 10px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1.6rem;
-      color: #e91e63;
-      transition: transform 0.2s ease;
-    }
-
-    .curtir-btn.clicked {
-      color: #4caf50;
-    }
-
-    /* Rodapé com formulário */
-    footer {
-      background: #1c1c1c;
-      color: #eee;
-      padding: 30px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    form {
-      flex: 1 1 350px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      background: #222;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(255,255,255,0.1);
-    }
-
-    form label {
-      grid-column: span 2;
-      font-weight: bold;
-    }
-
-    form textarea,
-    form input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      background: #333;
-      color: #fff;
-      font-size: 1rem;
-    }
-
-    form textarea {
-      resize: vertical;
-      min-height: 120px;
-      grid-column: span 2;
-    }
-
-    .anonimo-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      grid-column: span 2;
-      font-size: 0.9rem;
-    }
-
-    form button {
-      grid-column: span 2;
-      background: #e91e63;
-      border: none;
-      padding: 14px;
-      border-radius: 10px;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    form button:hover {
-      background: #c2185b;
-    }
-
-    .info-msg {
-      grid-column: span 2;
-      font-size: 0.9rem;
-      font-style: italic;
-      min-height: 22px;
-    }
-
-    .creditos {
-      font-size: 0.95rem;
-      color: #bbb;
-      margin-top: 25px;
-      flex: 1 1 100%;
-      text-align: center;
-    }
-
-    @media (max-width: 600px) {
-      form {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media(max-width:600px){form{grid-template-columns:1fr}form input[type="text"],.anonimo-container,form button{grid-column:span 1}}
   </style>
 </head>
 <body>
-
   <header>
-    <img src="assets/logo_motivame.png" alt="Logo Motiva.me">
-    <div class="textos">
-      CIEP 183 JOÃO VITTA
-      <div class="subtext">Inspirando forças para transformar vidas.</div>
-    </div>
+    <img src="assets/logo_motivame.png" alt="logo Motiva.me">
+    <div class="textos">CIEP 183 JOÃO VITTA<br><span class="subtext">Inspirando forças para transformar vidas.</span></div>
     <div id="socialHeader">
       <span>Siga-nos</span>
-      <a href="https://www.instagram.com/joaovitta183" target="_blank">
-        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0120 7.75v8.5a3.75 3.75 0 01-3.75 3.75h-8.5A3.75 3.75 0 014 16.25v-8.5A3.75 3.75 0 017.75 4zm8.75 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/></svg>
-        Instagram
+      <a href="https://www.instagram.com/joaovitta183" target="_blank" rel="noopener noreferrer" aria-label="Instagram João Vitta">
+        <svg viewBox="0 0 24 24"><path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 2h8.5A3.75 3.75 0 0120 7.75v8.5a3.75 3.75 0 01-3.75 3.75h-8.5A3.75 3.75 0 014 16.25v-8.5A3.75 3.75 0 017.75 4zm8.75 1a1 1 0 100 2 1 1 0 000-2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/></svg>
       </a>
     </div>
   </header>
 
-  <main id="gallery">
-    <!-- Cards com imagens -->
-    <div class="card">
-      <img src="https://i.postimg.cc/SY8RBRcB/1.png" alt="Mensagem 1">
-      <button class="curtir-btn" aria-label="Curtir">❤️</button>
+  <main>
+    <div class="gallery" id="gallery">
+      <div class="card">
+        <img src="https://via.placeholder.com/400x600.png?text=Imagem+1" alt="Mensagem 1">
+        <button class="curtir-btn" aria-label="Curtir"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+      </div>
+      <!-- Adicione mais .card conforme necessário -->
     </div>
-    <div class="card">
-      <img src="https://i.postimg.cc/f3LLwBxj/2.png" alt="Mensagem 2">
-      <button class="curtir-btn" aria-label="Curtir">❤️</button>
-    </div>
-    <!-- Adicione mais imagens conforme desejar -->
   </main>
+
+  <!-- Modal -->
+  <div id="imagemGrandeContainer" role="dialog" aria-modal="true">
+    <img id="imagemGrande" alt="Imagem ampliada">
+    <button class="closeBtn">Fechar</button>
+  </div>
 
   <footer>
     <form id="formMensagem">
-      <label for="mensagem">Sua mensagem motivacional</label>
+      <label for="mensagem">Mande pra gente sua mensagem, ela aparecerá aqui!<br>Você pode alegrar o dia de muita gente!</label>
       <textarea id="mensagem" name="mensagem" required></textarea>
-      <label for="assinatura">Assinatura (opcional)</label>
-      <input type="text" id="assinatura" name="assinatura" placeholder="Seu nome ou anônimo" />
-      <div class="anonimo-container">
-        <input type="checkbox" id="anonimo" />
-        <label for="anonimo">Enviar como Anônimo</label>
-      </div>
-      <button type="submit">Enviar Mensagem</button>
+      <input type="text" id="assinatura" name="assinatura" placeholder="Seu nome ou anônimo">
+      <div class="anonimo-container"><input type="checkbox" id="anonimo"><label for="anonimo">Enviar como Anônimo</label></div>
+      <button type="submit">Enviar</button>
       <div class="info-msg" id="infoMsg"></div>
     </form>
     <div class="creditos">© Mônica Lima - Ctrl X 2025</div>
@@ -240,46 +104,45 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     emailjs.init("FnhDPuvUd77_2JkKW");
+    const gallery=document.getElementById('gallery');
+    const modal=document.getElementById('imagemGrandeContainer');
+    const imgBig=document.getElementById('imagemGrande');
+    const closeBtn=modal.querySelector('.closeBtn');
+    const form=document.getElementById('formMensagem');
+    const infoMsg=document.getElementById('infoMsg');
+    const anonChk=document.getElementById('anonimo');
+    const assinaturaInput=document.getElementById('assinatura');
 
-    const form = document.getElementById('formMensagem');
-    const inputAssinatura = form.assinatura;
-    const checkboxAnonimo = document.getElementById('anonimo');
-    const infoMsg = document.getElementById('infoMsg');
-
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      let mensagem = form.mensagem.value.trim();
-      let assinatura = checkboxAnonimo.checked ? "Anônimo" : form.assinatura.value.trim();
-      if (!mensagem) {
-        infoMsg.textContent = "Por favor, escreva uma mensagem.";
-        infoMsg.style.color = "#f44336";
-        return;
+    // abrir modal
+    gallery.addEventListener('click',e=>{
+      if(e.target.tagName==='IMG'){
+        imgBig.src=e.target.src;imgBig.alt=e.target.alt;
+        modal.classList.add('show');
       }
+    });
+    closeBtn.addEventListener('click',()=>modal.classList.remove('show'));
 
-      emailjs.send('service_pq03f2d', 'template_dsk1hn8', {
-        mensagem,
-        assinatura
-      }).then(() => {
-        infoMsg.textContent = "Mensagem enviada com sucesso!";
-        infoMsg.style.color = "#4caf50";
-        form.reset();
-        inputAssinatura.disabled = false;
-      }).catch(() => {
-        infoMsg.textContent = "Erro ao enviar mensagem.";
-        infoMsg.style.color = "#f44336";
-      });
+    // curtir
+    gallery.addEventListener('click',e=>{
+      const btn=e.target.closest('.curtir-btn');
+      if(btn){btn.classList.toggle('clicked');e.stopPropagation();}
     });
 
-    checkboxAnonimo.addEventListener('change', () => {
-      inputAssinatura.disabled = checkboxAnonimo.checked;
-      if (checkboxAnonimo.checked) inputAssinatura.value = '';
+    // form
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const msg=form.mensagem.value.trim();
+      let assinatura=assinaturaInput.value.trim();
+      if(anonChk.checked) assinatura='Anônimo';
+      if(!msg){infoMsg.textContent='Digite a mensagem antes.';infoMsg.style.color='#f44336';return;}
+      emailjs.send('service_pq03f2d','template_dsk1hn8',{mensagem:msg,assinatura})
+      .then(()=>{infoMsg.textContent='Enviado com sucesso!';infoMsg.style.color='#4caf50';form.reset();})
+      .catch(()=>{infoMsg.textContent='Erro ao enviar.';infoMsg.style.color='#f44336';});
     });
 
-    // Curtir coração
-    document.querySelectorAll('.curtir-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        btn.classList.toggle('clicked');
-      });
+    anonChk.addEventListener('change',()=>{
+      assinaturaInput.disabled=anonChk.checked;
+      if(anonChk.checked) assinaturaInput.value='';
     });
   </script>
 </body>
