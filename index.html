@@ -20,6 +20,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding-bottom: 140px; /* espaço para o footer fixo */
     }
 
     header {
@@ -241,103 +242,206 @@
       background-color: #c2185b;
     }
 
-    /* Formulário */
-    form {
-      flex: 0 0 400px;
+    /* FOOTER FIXO COM FORMULÁRIO HORIZONTAL */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
       background: #222;
-      padding: 30px 25px;
-      border-radius: 20px;
-      box-shadow: 0 3px 26px rgba(255,255,255,0.18);
+      box-shadow: 0 -3px 10px rgba(0,0,0,0.7);
+      padding: 15px 20px;
       display: flex;
-      flex-direction: column;
-      gap: 22px;
-      color: #eee;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
       user-select: none;
-      height: fit-content;
-      min-width: 350px;
-      margin: 0 auto 60px;
-      max-width: 400px;
+      z-index: 2000;
+      font-size: 1rem;
+      color: #ccc;
+      min-height: 100px;
     }
 
-    form label {
-      font-weight: 700;
-      font-size: 1.3rem;
+    /* Form horizontal dentro do footer */
+    form#formMensagem {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 12px;
+      flex: 1 1 70%;
+      min-width: 300px;
     }
 
-    form textarea {
-      resize: vertical;
-      min-height: 130px;
-      background: #333;
+    form#formMensagem label {
+      display: none; /* Escondemos os labels para ficar mais clean */
+    }
+
+    form#formMensagem textarea {
+      resize: none;
+      min-height: 48px;
+      max-height: 48px;
+      flex: 1 1 auto;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 8px;
       border: none;
-      border-radius: 14px;
-      padding: 15px;
-      color: #eee;
-      font-size: 1.1rem;
-      font-family: inherit;
-    }
-
-    form input[type="text"] {
       background: #333;
-      border: none;
-      border-radius: 14px;
-      padding: 15px;
       color: #eee;
-      font-size: 1.1rem;
       font-family: inherit;
+      user-select: text;
     }
 
-    form button {
+    form#formMensagem input[type="text"] {
+      min-width: 150px;
+      max-width: 180px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      background: #333;
+      color: #eee;
+      font-family: inherit;
+      user-select: text;
+    }
+
+    form#formMensagem input[type="checkbox"] {
+      display: none; /* Checkbox escondido, usaremos o label custom */
+    }
+
+    /* Label custom para checkbox anônimo */
+    form#formMensagem .anonimo-label {
+      cursor: pointer;
+      user-select: none;
+      color: #eee;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #444;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1.8px solid #666;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    form#formMensagem .anonimo-label:hover {
+      background: #555;
+      border-color: #e91e63;
+      color: #e91e63;
+    }
+
+    form#formMensagem input[type="checkbox"]:checked + .anonimo-label {
+      background: #e91e63;
+      border-color: #e91e63;
+      color: white;
+    }
+
+    form#formMensagem button[type="submit"] {
       background: #e91e63;
       border: none;
-      padding: 18px;
+      padding: 14px 24px;
       border-radius: 20px;
       font-weight: 700;
-      font-size: 1.3rem;
+      font-size: 1.1rem;
       color: #fff;
       cursor: pointer;
       user-select: none;
       transition: background-color 0.3s ease;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
-    form button:hover {
+    form#formMensagem button[type="submit"]:hover {
       background-color: #c2185b;
     }
 
-    form .info-msg {
+    /* Mensagem de info status abaixo do form (por cima do footer) */
+    #infoMsg {
+      position: absolute;
+      bottom: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #222;
+      padding: 12px 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 8px rgba(255, 105, 180, 0.8);
       font-size: 1rem;
-      font-style: italic;
+      min-width: 320px;
+      max-width: 80vw;
       color: #f48fb1;
       user-select: none;
-      min-height: 24px;
+      text-align: center;
+      z-index: 2200;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
-    .anonimo-container {
+    #infoMsg.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Área de créditos */
+    .creditos {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 1.1rem;
+      gap: 12px;
+      color: #aaa;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      white-space: nowrap;
       user-select: none;
     }
 
-    .anonimo-container input[type="checkbox"] {
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
+    .creditos img {
+      height: 24px;
+      width: auto;
+      filter: brightness(0) invert(0.7);
+      user-select: none;
     }
 
-    /* RESPONSIVO para formulário no celular */
-    @media (max-width: 768px) {
-      form {
-        width: 90%;
-        min-width: unset;
+    /* RESPONSIVO para footer */
+    @media (max-width: 700px) {
+      footer {
+        flex-direction: column;
+        gap: 15px;
+        min-height: auto;
+        padding: 15px 20px 40px;
+      }
+
+      form#formMensagem {
+        flex-wrap: wrap;
+        gap: 10px;
+        flex: 1 1 100%;
+      }
+
+      form#formMensagem textarea,
+      form#formMensagem input[type="text"] {
+        flex: 1 1 100%;
+        max-width: 100%;
+        min-height: 60px;
+      }
+
+      form#formMensagem button[type="submit"] {
+        flex-shrink: 1;
+        width: 100%;
+        padding: 14px 0;
+      }
+
+      .creditos {
+        justify-content: center;
+        gap: 10px;
+        font-size: 1rem;
       }
     }
-
   </style>
 </head>
 <body>
   <header>
-    <img src="assets/logo_motivame.png" alt="Logo Motiva.me" />
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=220&q=80" alt="Logo Motiva.me" />
     <div class="textos">
       CIEP 183 JOÃO VITTA<br />
       <span class="subtext">Inspirando forças para transformar vidas.</span>
@@ -355,7 +459,7 @@
 
   <main id="gallery">
     <div class="card">
-      <img src="https://i.postimg.cc/Zq0rgC7B/1.png" alt="Mensagem 1" />
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Mensagem 1" />
       <button class="curtir-btn" aria-label="Curtir mensagem 1" title="Curtir">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42
@@ -367,7 +471,7 @@
       </button>
     </div>
     <div class="card">
-      <img src="https://i.postimg.cc/vTSV7yYj/2.png" alt="Mensagem 2" />
+      <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=400&q=80" alt="Mensagem 2" />
       <button class="curtir-btn" aria-label="Curtir mensagem 2" title="Curtir">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42
@@ -379,7 +483,7 @@
       </button>
     </div>
     <div class="card">
-      <img src="https://i.postimg.cc/3JpKdh0q/3.png" alt="Mensagem 3" />
+      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80" alt="Mensagem 3" />
       <button class="curtir-btn" aria-label="Curtir mensagem 3" title="Curtir">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42
@@ -391,7 +495,7 @@
       </button>
     </div>
     <div class="card">
-      <img src="https://i.postimg.cc/3NRn1L1f/4.png" alt="Mensagem 4" />
+      <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=400&q=80" alt="Mensagem 4" />
       <button class="curtir-btn" aria-label="Curtir mensagem 4" title="Curtir">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42
@@ -404,44 +508,51 @@
     </div>
   </main>
 
-  <form id="formMensagem" aria-label="Formulário para enviar mensagem motivacional">
-    <label for="mensagem">Sua mensagem motivacional</label>
-    <textarea id="mensagem" name="mensagem" required placeholder="Mande pra gente sua mensagem que ela vai aparecer aqui — venha ajudar o dia de alguém!"></textarea>
-    <label for="assinatura">Assinatura (opcional)</label>
-    <input type="text" id="assinatura" name="assinatura" placeholder="Seu nome ou anônimo" />
-    <div class="anonimo-container">
-      <input type="checkbox" id="anonimo" />
-      <label for="anonimo">Enviar como Anônimo</label>
-    </div>
-    <button type="submit">Enviar Mensagem</button>
-    <div class="info-msg" id="infoMsg" aria-live="polite"></div>
-  </form>
-
-  <div id="imagemGrandeContainer" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <div id="imagemGrandeContainer" aria-modal="true" role="dialog" aria-label="Visualizador de imagem">
     <img id="imagemGrande" alt="Imagem ampliada" />
     <button class="closeBtn" aria-label="Fechar imagem ampliada">Fechar</button>
   </div>
 
-  <!-- EmailJS -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <footer>
+    <form id="formMensagem" aria-label="Formulário de envio de mensagens">
+      <textarea name="mensagem" placeholder="Escreva sua mensagem aqui..." required aria-required="true"></textarea>
 
+      <input type="text" name="assinatura" placeholder="Assinatura (opcional)" aria-label="Assinatura" />
+
+      <input type="checkbox" id="checkboxAnonimo" name="anonimo" />
+      <label for="checkboxAnonimo" class="anonimo-label">Enviar como Anônimo</label>
+
+      <button type="submit" aria-label="Enviar mensagem">❤</button>
+    </form>
+
+    <div class="creditos" aria-label="Créditos do site">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/RegisteredTM.svg/120px-RegisteredTM.svg.png" alt="Símbolo Registrado" />
+      <span>Mônica Lima - Ctrl X</span>
+    </div>
+  </footer>
+
+  <div id="infoMsg" role="alert" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    emailjs.init("FnhDPuvUd77_2JkKW");
+    emailjs.init("user_RwOjXXGQhAMi1XGUOq8Zf");
 
     const gallery = document.getElementById('gallery');
     const imagemGrandeContainer = document.getElementById('imagemGrandeContainer');
     const imagemGrande = document.getElementById('imagemGrande');
     const btnFechar = imagemGrandeContainer.querySelector('.closeBtn');
-    const infoMsg = document.getElementById('infoMsg');
     const form = document.getElementById('formMensagem');
+    const infoMsg = document.getElementById('infoMsg');
+    const checkboxAnonimo = document.getElementById('checkboxAnonimo');
     const inputAssinatura = form.assinatura;
-    const checkboxAnonimo = document.getElementById('anonimo');
 
-    // Abrir imagem ampliada com modal
-    gallery.addEventListener('click', e => {
-      if(e.target.tagName === 'IMG'){
-        imagemGrande.src = e.target.src;
-        imagemGrande.alt = e.target.alt;
+    // Abrir modal ao clicar na imagem (não abrir ao clicar no coração)
+    gallery.addEventListener('click', (e) => {
+      if(e.target.tagName === 'IMG' && !e.target.closest('.curtir-btn')) {
+        const src = e.target.src;
+        const alt = e.target.alt;
+        imagemGrande.src = src;
+        imagemGrande.alt = alt;
         imagemGrandeContainer.classList.add('show');
       }
     });
@@ -466,6 +577,7 @@
       e.preventDefault();
       infoMsg.style.color = '';
       infoMsg.textContent = '';
+      infoMsg.classList.remove('show');
 
       let mensagem = form.mensagem.value.trim();
       let assinatura = form.assinatura.value.trim();
@@ -477,6 +589,7 @@
       if(!mensagem){
         infoMsg.style.color = '#f44336';
         infoMsg.textContent = 'Por favor, escreva uma mensagem antes de enviar.';
+        infoMsg.classList.add('show');
         return;
       }
 
@@ -486,11 +599,13 @@
       }).then(() => {
         infoMsg.style.color = '#4caf50';
         infoMsg.textContent = 'Mensagem enviada com sucesso! Obrigado por contribuir.';
+        infoMsg.classList.add('show');
         form.reset();
         inputAssinatura.disabled = false;
       }).catch(() => {
         infoMsg.style.color = '#f44336';
         infoMsg.textContent = 'Erro ao enviar mensagem. Tente novamente mais tarde.';
+        infoMsg.classList.add('show');
       });
     });
 
