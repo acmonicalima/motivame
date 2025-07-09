@@ -149,28 +149,49 @@
       transform: scale(1.06);
     }
 
-    /* Botão de curtir com coração */
+    /* Botão curtir com coração - posicionado no canto inferior direito da imagem */
     .curtir-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
       background: transparent;
       border: none;
       cursor: pointer;
-      padding: 12px 0;
+      padding: 0;
+      width: 32px;
+      height: 32px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       user-select: none;
-      transition: color 0.3s ease;
-      font-size: 24px;
-      color: #e91e63; /* cor padrão coração */
-      border-radius: 0 0 18px 18px;
+      transition: transform 0.2s ease;
+      color: #e91e63; /* cor do coração vazio */
+      filter: drop-shadow(0 0 1px black);
+      z-index: 10;
     }
 
     .curtir-btn:hover {
+      transform: scale(1.2);
       color: #c2185b;
     }
 
+    .curtir-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2px;
+      transition: fill 0.3s ease, stroke 0.3s ease;
+    }
+
+    /* Quando curtido, coração preenchido e verde */
     .curtir-btn.liked {
-      color: #4caf50; /* verde quando curtido */
+      color: #4caf50;
+    }
+
+    .curtir-btn.liked svg {
+      fill: currentColor;
+      stroke: currentColor;
     }
 
     /* Modal imagem ampliada */
@@ -336,28 +357,51 @@
     <div class="card">
       <img src="https://i.postimg.cc/Zq0rgC7B/1.png" alt="Mensagem 1" />
       <button class="curtir-btn" aria-label="Curtir mensagem 1" title="Curtir">
-        ❤️
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42
+          4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+          C13.09 3.81 14.76 3 16.5 3
+          19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          />
+        </svg>
       </button>
     </div>
     <div class="card">
       <img src="https://i.postimg.cc/vTSV7yYj/2.png" alt="Mensagem 2" />
       <button class="curtir-btn" aria-label="Curtir mensagem 2" title="Curtir">
-        ❤️
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42
+          4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+          C13.09 3.81 14.76 3 16.5 3
+          19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          />
+        </svg>
       </button>
     </div>
     <div class="card">
       <img src="https://i.postimg.cc/3JpKdh0q/3.png" alt="Mensagem 3" />
       <button class="curtir-btn" aria-label="Curtir mensagem 3" title="Curtir">
-        ❤️
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42
+          4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+          C13.09 3.81 14.76 3 16.5 3
+          19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          />
+        </svg>
       </button>
     </div>
     <div class="card">
       <img src="https://i.postimg.cc/3NRn1L1f/4.png" alt="Mensagem 4" />
       <button class="curtir-btn" aria-label="Curtir mensagem 4" title="Curtir">
-        ❤️
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42
+          4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09
+          C13.09 3.81 14.76 3 16.5 3
+          19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          />
+        </svg>
       </button>
     </div>
-    <!-- Adicione mais cards conforme necessário -->
   </main>
 
   <form id="formMensagem" aria-label="Formulário para enviar mensagem motivacional">
@@ -409,7 +453,7 @@
       imagemGrande.alt = '';
     });
 
-    // Botão curtir com coração
+    // Botão curtir com coração (toggle)
     gallery.querySelectorAll('.curtir-btn').forEach(btn => {
       btn.addEventListener('click', e => {
         e.stopPropagation(); // não abre a imagem ao clicar no coração
