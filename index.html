@@ -99,37 +99,42 @@
       width: 100%;
       max-width: 1200px;
       margin: 30px 20px 60px;
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+      justify-items: center;
     }
 
-    /* Galeria com colunas no desktop */
-    .gallery {
-      column-count: 2;
-      column-gap: 20px;
-      padding: 0;
-      margin: 0 auto;
-      width: 100%;
+    /* Responsivo para celular */
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 20px 10px 40px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      main {
+        grid-template-columns: 1fr;
+      }
     }
 
     .card {
-      break-inside: avoid;
-      margin-bottom: 20px;
-      position: relative;
-      cursor: pointer;
-      overflow: hidden;
+      background: #222;
       border-radius: 18px;
       box-shadow: 0 3px 14px rgba(255, 255, 255, 0.12);
-      background: #222;
-      display: inline-block;
+      overflow: hidden;
       width: 100%;
+      max-width: 400px; /* largura fixa para imagens 400px */
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      flex-direction: column;
       transition: transform 0.2s ease;
     }
 
     .card:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
 
     .card img {
@@ -144,25 +149,31 @@
       transform: scale(1.06);
     }
 
+    /* Botão de curtir com coração */
     .curtir-btn {
-      width: 100%;
-      padding: 14px 0;
-      background: #e91e63;
+      background: transparent;
       border: none;
-      border-radius: 0 0 18px 18px;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.25rem;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      padding: 12px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       user-select: none;
+      transition: color 0.3s ease;
+      font-size: 24px;
+      color: #e91e63; /* cor padrão coração */
+      border-radius: 0 0 18px 18px;
     }
 
     .curtir-btn:hover {
-      background-color: #c2185b;
+      color: #c2185b;
     }
 
-    /* Popup da imagem ampliada */
+    .curtir-btn.liked {
+      color: #4caf50; /* verde quando curtido */
+    }
+
+    /* Modal imagem ampliada */
     #imagemGrandeContainer {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -209,6 +220,7 @@
       background-color: #c2185b;
     }
 
+    /* Formulário */
     form {
       flex: 0 0 400px;
       background: #222;
@@ -222,6 +234,8 @@
       user-select: none;
       height: fit-content;
       min-width: 350px;
+      margin: 0 auto 60px;
+      max-width: 400px;
     }
 
     form label {
@@ -290,66 +304,14 @@
       cursor: pointer;
     }
 
-    /* RESPONSIVO */
-    @media (max-width: 1024px) {
-      main {
-        flex-direction: column;
-        align-items: center;
-      }
-
+    /* RESPONSIVO para formulário no celular */
+    @media (max-width: 768px) {
       form {
         width: 90%;
         min-width: unset;
-        margin-top: 25px;
-      }
-
-      .gallery {
-        width: 100%;
       }
     }
 
-    /* ——— Estilo Pinterest móvel (2 colunas com deslocamento irregular) ——— */
-    @media (max-width: 600px) {
-      .gallery {
-        display: grid !important; /* Override column-count */
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        padding: 0;
-        margin: 0 auto;
-        width: 100%;
-      }
-      .card {
-        margin: 0;
-        aspect-ratio: 1 / 1;
-        overflow: hidden;
-        border-radius: 18px;
-        background: #222;
-        box-shadow: 0 3px 14px rgba(255, 255, 255, 0.12);
-        transition: transform 0.2s ease;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 18px 18px 0 0;
-        user-select: text;
-        transition: transform 0.3s ease;
-      }
-      .card:hover img {
-        transform: scale(1.06);
-      }
-      /* Deslocamentos sutis para efeito irregular */
-      .card:nth-child(odd) {
-        transform: translateY(6%);
-      }
-      .card:nth-child(4n+2) {
-        transform: translateY(-4%);
-      }
-    }
   </style>
 </head>
 <body>
@@ -370,81 +332,56 @@
     </div>
   </header>
 
-  <main>
-    <div class="gallery" id="gallery" role="list">
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/SY8RBRcB/1.png" alt="Mensagem 1" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 1">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/f3LLwBxj/2.png" alt="Mensagem 2" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 2">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/mPVkf0Fg/3.png" alt="Mensagem 3" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 3">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/0bYrZ6km/4.png" alt="Mensagem 4" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 4">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/zyqvQJvQ/5.png" alt="Mensagem 5" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 5">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/B8VvtHpW/6.png" alt="Mensagem 6" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 6">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/FdkHSzCY/7.png" alt="Mensagem 7" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 7">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/2Lp87Yg2/8.png" alt="Mensagem 8" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 8">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/2L4jHJDm/9.png" alt="Mensagem 9" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 9">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/0rmN26J3/10.png" alt="Mensagem 10" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 10">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/QH3dBXQM/11.png" alt="Mensagem 11" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 11">Curtir</button>
-      </div>
-      <div class="card" role="listitem" tabindex="0">
-        <img src="https://i.postimg.cc/kBvXKksv/12.png" alt="Mensagem 12" />
-        <button class="curtir-btn" aria-label="Curtir mensagem 12">Curtir</button>
-      </div>
+  <main id="gallery">
+    <div class="card">
+      <img src="https://i.postimg.cc/Zq0rgC7B/1.png" alt="Mensagem 1" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 1" title="Curtir">
+        ❤️
+      </button>
     </div>
-
-    <form id="formMensagem" aria-label="Formulário para enviar mensagem motivacional" novalidate>
-      <label for="mensagem">Sua mensagem motivacional</label>
-      <textarea id="mensagem" name="mensagem" required placeholder="Mande pra gente sua mensagem que ela vai aparecer aqui — venha ajudar o dia de alguém!"></textarea>
-      <label for="assinatura">Assinatura (opcional)</label>
-      <input type="text" id="assinatura" name="assinatura" placeholder="Seu nome ou anônimo" />
-      <div class="anonimo-container">
-        <input type="checkbox" id="anonimo" />
-        <label for="anonimo">Enviar como Anônimo</label>
-      </div>
-      <button type="submit">Enviar Mensagem</button>
-      <div class="info-msg" id="infoMsg" aria-live="polite" role="alert"></div>
-    </form>
+    <div class="card">
+      <img src="https://i.postimg.cc/vTSV7yYj/2.png" alt="Mensagem 2" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 2" title="Curtir">
+        ❤️
+      </button>
+    </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/3JpKdh0q/3.png" alt="Mensagem 3" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 3" title="Curtir">
+        ❤️
+      </button>
+    </div>
+    <div class="card">
+      <img src="https://i.postimg.cc/3NRn1L1f/4.png" alt="Mensagem 4" />
+      <button class="curtir-btn" aria-label="Curtir mensagem 4" title="Curtir">
+        ❤️
+      </button>
+    </div>
+    <!-- Adicione mais cards conforme necessário -->
   </main>
+
+  <form id="formMensagem" aria-label="Formulário para enviar mensagem motivacional">
+    <label for="mensagem">Sua mensagem motivacional</label>
+    <textarea id="mensagem" name="mensagem" required placeholder="Mande pra gente sua mensagem que ela vai aparecer aqui — venha ajudar o dia de alguém!"></textarea>
+    <label for="assinatura">Assinatura (opcional)</label>
+    <input type="text" id="assinatura" name="assinatura" placeholder="Seu nome ou anônimo" />
+    <div class="anonimo-container">
+      <input type="checkbox" id="anonimo" />
+      <label for="anonimo">Enviar como Anônimo</label>
+    </div>
+    <button type="submit">Enviar Mensagem</button>
+    <div class="info-msg" id="infoMsg" aria-live="polite"></div>
+  </form>
 
   <div id="imagemGrandeContainer" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
     <img id="imagemGrande" alt="Imagem ampliada" />
     <button class="closeBtn" aria-label="Fechar imagem ampliada">Fechar</button>
   </div>
 
-  <!-- Corrigido o script do emailjs com versão correta e lógica clara -->
+  <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
   <script>
-    // Inicializa EmailJS com sua user ID
     emailjs.init("FnhDPuvUd77_2JkKW");
 
     const gallery = document.getElementById('gallery');
@@ -456,7 +393,7 @@
     const inputAssinatura = form.assinatura;
     const checkboxAnonimo = document.getElementById('anonimo');
 
-    // Popup de imagem ampliada
+    // Abrir imagem ampliada com modal
     gallery.addEventListener('click', e => {
       if(e.target.tagName === 'IMG'){
         imagemGrande.src = e.target.src;
@@ -464,41 +401,29 @@
         imagemGrandeContainer.classList.add('show');
       }
     });
+
+    // Fechar modal
     btnFechar.addEventListener('click', () => {
       imagemGrandeContainer.classList.remove('show');
       imagemGrande.src = '';
       imagemGrande.alt = '';
     });
 
-    // Botão curtir
+    // Botão curtir com coração
     gallery.querySelectorAll('.curtir-btn').forEach(btn => {
       btn.addEventListener('click', e => {
-        e.stopPropagation();
-        if(btn.textContent === 'Curtir'){
-          btn.textContent = 'Curtiu!';
-          btn.style.backgroundColor = '#4caf50';
-        } else {
-          btn.textContent = 'Curtir';
-          btn.style.backgroundColor = '#e91e63';
-        }
+        e.stopPropagation(); // não abre a imagem ao clicar no coração
+        btn.classList.toggle('liked');
       });
-    });
-
-    // Desabilita campo assinatura se anônimo estiver marcado
-    checkboxAnonimo.addEventListener('change', () => {
-      inputAssinatura.disabled = checkboxAnonimo.checked;
-      if(checkboxAnonimo.checked){
-        inputAssinatura.value = '';
-      }
     });
 
     // Envio do formulário via EmailJS
     form.addEventListener('submit', e => {
       e.preventDefault();
+      infoMsg.style.color = '';
       infoMsg.textContent = '';
-      infoMsg.style.color = '#f48fb1';
 
-      const mensagem = form.mensagem.value.trim();
+      let mensagem = form.mensagem.value.trim();
       let assinatura = form.assinatura.value.trim();
 
       if(checkboxAnonimo.checked){
@@ -511,21 +436,26 @@
         return;
       }
 
-      // Envia o email via EmailJS
       emailjs.send('service_pq03f2d', 'template_dsk1hn8', {
         mensagem: mensagem,
         assinatura: assinatura
-      })
-      .then(() => {
+      }).then(() => {
         infoMsg.style.color = '#4caf50';
         infoMsg.textContent = 'Mensagem enviada com sucesso! Obrigado por contribuir.';
         form.reset();
         inputAssinatura.disabled = false;
-      })
-      .catch(() => {
+      }).catch(() => {
         infoMsg.style.color = '#f44336';
         infoMsg.textContent = 'Erro ao enviar mensagem. Tente novamente mais tarde.';
       });
+    });
+
+    // Desabilitar input assinatura se anônimo estiver marcado
+    checkboxAnonimo.addEventListener('change', () => {
+      inputAssinatura.disabled = checkboxAnonimo.checked;
+      if(checkboxAnonimo.checked){
+        inputAssinatura.value = '';
+      }
     });
   </script>
 </body>
