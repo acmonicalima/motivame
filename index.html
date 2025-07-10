@@ -10,21 +10,21 @@
       margin: 0; padding: 0; box-sizing: border-box;
     }
     body {
-  background-color: #F3CFC6; /* fundo da página */
-  color: #222;
-  padding: 20px;
-}
-
-header {
-  background-color: #fff; /* fundo branco só no cabeçalho */
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  gap: 15px;
-  padding: 10px 20px; /* pra dar uma respiada */
-  border-radius: 6px; /* opcional, fica mais bonito */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* sutil sombra */
-}
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #F3CFC6; /* fundo da página */
+      color: #222;
+      padding: 20px;
+    }
+    header {
+      background-color: #fff; /* fundo branco só no cabeçalho */
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      gap: 15px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
     header img {
       width: 150px; /* logo maior */
       height: auto;
@@ -166,7 +166,7 @@ header {
 
 <footer>
   <form id="formMotivacao" aria-label="Formulário de envio de mensagem">
-    <label for="mensagem">Deixe sua mensagem de motivação para os jovens:</label>
+    <label for="mensagem">ESCREVA PRA GENTE! SUAS PALAVRAS VÃO ALEGRAR O DIA DE ALGUÉM!</label>
     <textarea id="mensagem" name="mensagem" placeholder="Escreva aqui..." required></textarea>
 
     <label for="nome">Seu nome (opcional):</label>
@@ -240,6 +240,22 @@ header {
 
   carregarImagens();
 
+  // Elementos
+  const nomeInput = document.getElementById('nome');
+  const anonimoCheckbox = document.getElementById('anonimo');
+
+  // Atualiza input nome quando marcar/desmarcar anônimo
+  anonimoCheckbox.addEventListener('change', () => {
+    if (anonimoCheckbox.checked) {
+      nomeInput.value = 'ANÔNIMO';
+      nomeInput.disabled = true;
+    } else {
+      nomeInput.value = '';
+      nomeInput.disabled = false;
+      nomeInput.placeholder = 'Seu nome';
+    }
+  });
+
   // Formulário EmailJS
   const form = document.getElementById('formMotivacao');
   const infoMsg = document.getElementById('infoMsg');
@@ -257,10 +273,10 @@ header {
     infoMsg.textContent = 'Enviando...';
     infoMsg.style.color = 'black';
 
-    const nome = form.nome.value.trim();
-    const anonimo = form.anonimo.checked ? 'Sim' : 'Não';
+    // Aqui pega o nome, se anônimo força "Anônimo"
+    const nome = anonimoCheckbox.checked ? 'Anônimo' : form.nome.value.trim();
+    const anonimo = anonimoCheckbox.checked ? 'Sim' : 'Não';
 
-    // Dados para o email template
     const templateParams = {
       mensagem: mensagem,
       nome: nome || 'Anônimo',
@@ -272,6 +288,8 @@ header {
         infoMsg.textContent = 'Mensagem enviada com sucesso! Obrigado!';
         infoMsg.style.color = 'green';
         form.reset();
+        nomeInput.disabled = false;  // libera input depois do reset
+        nomeInput.placeholder = 'Seu nome';
       })
       .catch(() => {
         infoMsg.textContent = 'Erro ao enviar. Tente novamente.';
