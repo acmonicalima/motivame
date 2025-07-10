@@ -1,180 +1,54 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Motiva.me - CIEP 183 João Vitta</title>
   <style>
-    /* === RESET === */
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fff; /* fundo original */
-      color: #222;
-      padding: 20px;
-    }
-    header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      gap: 15px;
-    }
-    header img {
-      width: 150px; /* logo maior */
-      height: auto;
-    }
-    .textos {
-      font-weight: bold;
-      font-size: 1.4rem;
-      line-height: 1.3;
-    }
-    .subtext {
-      font-weight: normal;
-      font-size: 1rem;
-      color: #555;
-    }
-    #socialHeader {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: bold;
-      font-size: 1rem;
-      color: #333;
-    }
-    #socialHeader img {
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-    }
-    main {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
-      gap: 15px;
-      margin-bottom: 40px;
-    }
-    .card {
-      border: 1px solid #ddd;
-      padding: 10px;
-      border-radius: 6px;
-      background: #fafafa;
-      cursor: default;
-    }
-    .card img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 4px;
-      margin-bottom: 8px;
-    }
-    .card .title {
-      font-weight: bold;
-      font-size: 1.1rem;
-      color: #222;
-      user-select: none;
-    }
-    footer {
-      border-top: 1px solid #ccc;
-      padding-top: 15px;
-      font-size: 0.9rem;
-      color: #666;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-    form {
-      max-width: 480px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    label {
-      font-weight: 600;
-      font-size: 1rem;
-    }
-    textarea, input[type="text"] {
-      font-size: 1rem;
-      padding: 8px;
-      border: 1px solid #aaa;
-      border-radius: 4px;
-      resize: vertical;
-      width: 100%;
-    }
-    .anonimo-container {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    button[type="submit"] {
-      background-color: #007bff;
-      color: white;
-      font-weight: bold;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button[type="submit"]:hover {
-      background-color: #0056b3;
-    }
-    .info-msg {
-      font-style: italic;
-      color: green;
-      min-height: 1.5em;
-      user-select: none;
-    }
-    /* Para o link do Instagram no rodapé */
-    .creditos {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .creditos .instagram-link img {
-      width: 28px;
-      height: 28px;
-      vertical-align: middle;
-      cursor: pointer;
-    }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #fff; }
+    header { display: flex; align-items: center; justify-content: space-between; background-color: #fff; padding: 10px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    header img { height: 80px; }
+    .textos { font-size: 1rem; color: #333; }
+    .subtext { font-size: 0.9rem; color: #777; }
+    #socialHeader { display: flex; align-items: center; gap: 8px; }
+    #socialHeader img { height: 24px; cursor: pointer; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; padding: 20px; }
+    .card img { width: 100%; border-radius: 8px; }
+    footer { padding: 20px; text-align: center; background-color: #f7f7f7; }
+    .creditos { margin-top: 20px; font-size: 0.8rem; color: #555; }
+    .info-msg { margin-top: 10px; color: green; font-size: 0.9rem; }
   </style>
 </head>
 <body>
 
 <header>
-  <img src="assets/logo_motivame.png" alt="logo Motiva.me" />
-  <div class="textos">
-    CIEP 183 JOÃO VITTA<br />
-    <span class="subtext">Inspirando forças para transformar vidas.</span>
-  </div>
-  <div id="socialHeader" aria-label="Siga-nos nas redes sociais">
+  <img src="assets/logo_motivame.png" alt="logo Motiva.me">
+  <div class="textos">CIEP 183 JOÃO VITTA<br><span class="subtext">Inspirando forças para transformar vidas.</span></div>
+  <div id="socialHeader">
     <span>Siga-nos</span>
-    <a href="https://www.instagram.com/seu_perfil_instagram" target="_blank" rel="noopener noreferrer" class="instagram-link" aria-label="Instagram Motiva.me">
-      <img src="instagram_icon.png" alt="Ícone Instagram" />
+    <a href="https://instagram.com/" target="_blank">
+      <img src="instagram_icon.png" alt="Instagram">
     </a>
   </div>
 </header>
 
-<main id="gallery">
-  <!-- As imagens e títulos serão carregados aqui pelo JS -->
-</main>
+<div class="grid" id="gridImagens"></div>
 
 <footer>
-  <form id="formMotivacao" aria-label="Formulário de envio de mensagem">
-    <label for="mensagem">Deixe sua mensagem de motivação para os jovens:</label>
-    <textarea id="mensagem" name="mensagem" placeholder="Escreva aqui..." required></textarea>
+  <form id="formMotivacao">
+    <label for="mensagem">Deixe sua mensagem de motivação para os jovens:</label><br>
+    <textarea id="mensagem" name="mensagem" placeholder="Escreva aqui..." required></textarea><br>
 
-    <label for="nome">Seu nome (opcional):</label>
-    <input type="text" id="nome" name="nome" placeholder="Seu nome" />
+    <label for="nome">Seu nome (opcional):</label><br>
+    <input type="text" id="nome" name="nome" placeholder="Seu nome"><br>
 
-    <div class="anonimo-container">
-      <input type="checkbox" id="anonimo" name="anonimo" />
+    <div>
+      <input type="checkbox" id="anonimo" name="anonimo">
       <label for="anonimo">Enviar anonimamente</label>
     </div>
 
     <button type="submit">Enviar</button>
-    <div class="info-msg" id="infoMsg" aria-live="polite"></div>
+    <div class="info-msg" id="infoMsg"></div>
   </form>
 
   <div class="creditos">© Mônica Lima - Ctrl X <span id="anoAtual"></span></div>
@@ -182,96 +56,48 @@
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  // Atualiza ano no rodapé
+  emailjs.init("FnhDPuvUd77_2JkKW");
+
   document.getElementById('anoAtual').textContent = new Date().getFullYear();
 
-  // Inicializa EmailJS
-  emailjs.init('FnhDPuvUd77_2JkKW');
+  fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTXIrIUjF9AK224uSnpV8yyCTGVWR2MNa_xn-LzVG38Akp9LoSztjBrUPWKwfV9pl8ZkoRgq00_ATlG/pub?gid=0&single=true&output=csv')
+    .then(response => response.text())
+    .then(data => {
+      const linhas = data.split('\n').slice(1);
+      const grid = document.getElementById('gridImagens');
 
-  // Função para carregar imagens da planilha CSV publicada Google Sheets
-  async function carregarImagens() {
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTXIrIUjF9AK224uSnpV8yyCTGVWR2MNa_xn-LzVG38Akp9LoSztjBrUPWKwfV9pl8ZkoRgq00_ATlG/pub?output=csv';
-    try {
-      const response = await fetch(csvUrl);
-      if (!response.ok) throw new Error('Erro ao buscar CSV');
-      const csvText = await response.text();
-
-      const linhas = csvText.trim().split('\n');
-      const [cabecalho, ...dados] = linhas;
-      const indices = {
-        titulo: cabecalho.split(',').indexOf('Título'),
-        url: cabecalho.split(',').indexOf('URL')
-      };
-
-      const gallery = document.getElementById('gallery');
-      gallery.innerHTML = '';
-
-      dados.forEach(linha => {
-        const colunas = linha.split(',');
-        const titulo = colunas[indices.titulo];
-        const url = colunas[indices.url];
-
-        // Criar card imagem
-        const card = document.createElement('div');
-        card.classList.add('card');
-
-        const img = document.createElement('img');
-        img.src = url.trim();
-        img.alt = titulo.trim();
-
-        const tituloEl = document.createElement('div');
-        tituloEl.classList.add('title');
-        tituloEl.textContent = titulo.trim();
-
-        card.appendChild(img);
-        card.appendChild(tituloEl);
-        gallery.appendChild(card);
+      linhas.forEach(linha => {
+        const [titulo, url] = linha.split(',');
+        if (titulo && url) {
+          const card = document.createElement('div');
+          card.classList.add('card');
+          card.innerHTML = `<img src="${url}" alt="${titulo}"><p>${titulo}</p>`;
+          grid.appendChild(card);
+        }
       });
+    })
+    .catch(error => console.error('Erro ao carregar planilha:', error));
 
-    } catch (error) {
-      console.error('Erro ao carregar imagens:', error);
-    }
-  }
-
-  carregarImagens();
-
-  // Formulário EmailJS
-  const form = document.getElementById('formMotivacao');
-  const infoMsg = document.getElementById('infoMsg');
-
-  form.addEventListener('submit', function (e) {
+  document.getElementById('formMotivacao').addEventListener('submit', e => {
     e.preventDefault();
 
-    const mensagem = form.mensagem.value.trim();
-    if (!mensagem) {
-      infoMsg.textContent = 'Por favor, escreva uma mensagem.';
-      infoMsg.style.color = 'red';
-      return;
-    }
+    const mensagem = document.getElementById('mensagem').value;
+    const nome = document.getElementById('nome').value;
+    const anonimo = document.getElementById('anonimo').checked;
+    const remetente = anonimo ? 'Anônimo' : nome || 'Anônimo';
 
-    infoMsg.textContent = 'Enviando...';
-    infoMsg.style.color = 'black';
-
-    const nome = form.nome.value.trim();
-    const anonimo = form.anonimo.checked ? 'Sim' : 'Não';
-
-    // Dados para o email template
-    const templateParams = {
-      mensagem: mensagem,
-      nome: nome || 'Anônimo',
-      anonimo: anonimo
-    };
-
-    emailjs.send('service_pq03f2d', 'template_dsk1hn8', templateParams)
-      .then(() => {
-        infoMsg.textContent = 'Mensagem enviada com sucesso! Obrigado!';
-        infoMsg.style.color = 'green';
-        form.reset();
-      })
-      .catch(() => {
-        infoMsg.textContent = 'Erro ao enviar. Tente novamente.';
-        infoMsg.style.color = 'red';
-      });
+    emailjs.send("service_pq03f2d", "template_dsk1hn8", {
+      message: mensagem,
+      from_name: remetente
+    })
+    .then(() => {
+      document.getElementById('infoMsg').textContent = 'Mensagem enviada com sucesso! Obrigado!';
+      e.target.reset();
+    })
+    .catch(error => {
+      document.getElementById('infoMsg').textContent = 'Erro ao enviar. Tente novamente.';
+      console.error(error);
+    });
   });
 </script>
 
