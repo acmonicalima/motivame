@@ -190,42 +190,43 @@
 
   // Função para carregar imagens da planilha CSV publicada Google Sheets
   async function carregarImagens() {
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTXIrIUjF9AK224uSnpV8yyCTGVWR2MNa_xn-LzVG38Akp9LoSztjBrUPWKwfV9pl8ZkoRgq00_ATlG/pub?output=csv';
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTXIrIUjF9AK224uSnpV8yyCTGVWR2MNa_xn-LzVG38Akp9LoSztjBrUPWKwfV9pl8ZkoRgq00_ATlG/pub?gid=0&single=true&output=csv';
     try {
       const response = await fetch(csvUrl);
       if (!response.ok) throw new Error('Erro ao buscar CSV');
       const csvText = await response.text();
 
       const linhas = csvText.trim().split('\n');
-      const [cabecalho, ...dados] = linhas;
-      const indices = {
-        titulo: cabecalho.split(',').indexOf('Título'),
-        url: cabecalho.split(',').indexOf('URL')
-      };
+      const cabecalho = linhas[0].split(',');
+      const dados = linhas.slice(1);
+
+      const idxTitulo = cabecalho.indexOf('Título');
+      const idxUrl = cabecalho.indexOf('URL');
 
       const gallery = document.getElementById('gallery');
       gallery.innerHTML = '';
 
       dados.forEach(linha => {
         const colunas = linha.split(',');
-        const titulo = colunas[indices.titulo];
-        const url = colunas[indices.url];
+        const titulo = colunas[idxTitulo] ? colunas[idxTitulo].trim() : 'Sem título';
+        const url = colunas[idxUrl] ? colunas[idxUrl].trim() : '';
 
-        // Criar card imagem
-        const card = document.createElement('div');
-        card.classList.add('card');
+        if (url) {
+          const card = document.createElement('div');
+          card.classList.add('card');
 
-        const img = document.createElement('img');
-        img.src = url.trim();
-        img.alt = titulo.trim();
+          const img = document.createElement('img');
+          img.src = url;
+          img.alt = titulo;
 
-        const tituloEl = document.createElement('div');
-        tituloEl.classList.add('title');
-        tituloEl.textContent = titulo.trim();
+          const tituloEl = document.createElement('div');
+          tituloEl.classList.add('title');
+          tituloEl.textContent = titulo;
 
-        card.appendChild(img);
-        card.appendChild(tituloEl);
-        gallery.appendChild(card);
+          card.appendChild(img);
+          card.appendChild(tituloEl);
+          gallery.appendChild(card);
+        }
       });
 
     } catch (error) {
