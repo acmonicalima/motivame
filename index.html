@@ -73,6 +73,15 @@
       display: block;
       border-radius: 4px;
       margin-bottom: 8px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .card img.enlarged {
+      transform: scale(1.2);
+      z-index: 10;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      border-radius: 6px;
     }
     .card .title {
       font-weight: bold;
@@ -234,7 +243,6 @@
 
       dados.forEach(linha => {
         const colunas = linha.split(',');
-        // Aqui a mudança: se não tiver título, fica vazio, não "Sem título"
         const titulo = colunas[idxTitulo] ? colunas[idxTitulo].trim() : '';
         const url = colunas[idxUrl] ? colunas[idxUrl].trim() : '';
 
@@ -245,6 +253,11 @@
           const img = document.createElement('img');
           img.src = url;
           img.alt = titulo;
+
+          // Faz a imagem dar zoom ao clicar
+          img.addEventListener('click', () => {
+            img.classList.toggle('enlarged');
+          });
 
           const tituloEl = document.createElement('div');
           tituloEl.classList.add('title');
@@ -308,7 +321,6 @@
     infoMsg.textContent = 'Enviando...';
     infoMsg.style.color = 'black';
 
-    // Aqui pega o nome, se anônimo força "Anônimo"
     const nome = anonimoCheckbox.checked ? 'Anônimo' : form.nome.value.trim();
     const anonimo = anonimoCheckbox.checked ? 'Sim' : 'Não';
 
@@ -323,7 +335,7 @@
         infoMsg.textContent = 'Mensagem enviada com sucesso! Obrigado!';
         infoMsg.style.color = 'green';
         form.reset();
-        nomeInput.disabled = false;  // libera input depois do reset
+        nomeInput.disabled = false;
         nomeInput.placeholder = 'Seu nome';
       })
       .catch(() => {
