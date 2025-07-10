@@ -11,28 +11,37 @@
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #F3CFC6; /* fundo da página */
+      background-color: #F3CFC6;
       color: #222;
       padding: 20px;
     }
     header {
-      background-color: #fff; /* fundo branco só no cabeçalho */
+      background-color: #fff;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      gap: 12px;
       margin-bottom: 30px;
-      gap: 25px;
       padding: 20px 30px;
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
+    .top-header {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
     header img {
-      width: 220px; /* logo maior */
+      width: 220px;
       height: auto;
+      flex-shrink: 0;
     }
     .textos {
       font-weight: bold;
       font-size: 2rem;
       line-height: 1.3;
+      flex-grow: 1;
+      min-width: 200px;
     }
     .subtext {
       font-weight: normal;
@@ -47,15 +56,27 @@
       font-weight: bold;
       font-size: 1.3rem;
       color: #333;
+      flex-shrink: 0;
     }
     #socialHeader img {
       width: 32px;
       height: 32px;
       cursor: pointer;
     }
+    .aviso {
+      font-size: 1.1rem;
+      color: #007bff;
+      font-weight: 600;
+      background-color: #d9eaff;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-align: center;
+      user-select: none;
+      box-shadow: 0 2px 4px rgba(0,123,255,0.3);
+    }
     main {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* fixo 3 colunas */
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
       margin-bottom: 50px;
     }
@@ -83,7 +104,6 @@
       user-select: none;
       margin-bottom: 8px;
     }
-    /* Botão do coração */
     .like-btn {
       background: none;
       border: none;
@@ -113,6 +133,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      width: 100%;
     }
     label {
       font-weight: 600;
@@ -142,6 +163,8 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       font-size: 1.1rem;
+      width: fit-content;
+      align-self: flex-start;
     }
     button[type="submit"]:hover {
       background-color: #0056b3;
@@ -153,12 +176,13 @@
       user-select: none;
       font-size: 1.1rem;
     }
-    /* Para o link do Instagram no rodapé */
     .creditos {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-size: 1.1rem;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     .creditos .instagram-link img {
       width: 36px;
@@ -166,27 +190,162 @@
       vertical-align: middle;
       cursor: pointer;
     }
+    /* Lightbox (popup da imagem) */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      cursor: pointer;
+      padding: 10px;
+    }
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.5);
+      cursor: default;
+    }
+    #lightbox .fechar {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2.5rem;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      background: transparent;
+      border: none;
+      z-index: 1100;
+    }
+
+    /* === RESPONSIVIDADE === */
+    @media (max-width: 1024px) {
+      main {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      header {
+        padding: 15px 20px;
+      }
+      .top-header {
+        gap: 15px;
+      }
+      header img {
+        width: 180px;
+      }
+      .textos {
+        font-size: 1.7rem;
+      }
+      .subtext {
+        font-size: 1.1rem;
+      }
+      #socialHeader {
+        font-size: 1.1rem;
+      }
+      #socialHeader img {
+        width: 28px;
+        height: 28px;
+      }
+      footer {
+        font-size: 1rem;
+      }
+      form label {
+        font-size: 1.1rem;
+      }
+      button[type="submit"] {
+        font-size: 1rem;
+        padding: 10px 15px;
+      }
+    }
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      main {
+        grid-template-columns: 1fr;
+      }
+      header {
+        padding: 15px 15px;
+      }
+      .top-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      header img {
+        width: 140px;
+      }
+      .textos {
+        font-size: 1.4rem;
+      }
+      .subtext {
+        font-size: 1rem;
+      }
+      #socialHeader {
+        margin-left: 0;
+        font-size: 1rem;
+      }
+      #socialHeader img {
+        width: 24px;
+        height: 24px;
+      }
+      footer {
+        font-size: 0.95rem;
+      }
+      form label {
+        font-size: 1rem;
+      }
+      button[type="submit"] {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+        width: 100%;
+      }
+      .creditos {
+        flex-direction: column;
+        font-size: 0.95rem;
+        gap: 5px;
+      }
+      .creditos .instagram-link img {
+        width: 28px;
+        height: 28px;
+      }
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <img src="assets/logo_motivame.png" alt="logo Motiva.me" />
-  <div class="textos">
-    CIEP 183 JOÃO VITTA<br />
-    <span class="subtext">Inspirando forças para transformar vidas.</span>
+  <div class="top-header">
+    <img src="assets/logo_motivame.png" alt="logo Motiva.me" />
+    <div class="textos">
+      CIEP 183 JOÃO VITTA<br />
+      <span class="subtext">Inspirando forças para transformar vidas.</span>
+    </div>
+    <div id="socialHeader" aria-label="Siga-nos nas redes sociais">
+      <span>Siga-nos</span>
+      <a href="https://www.instagram.com/seu_perfil_instagram" target="_blank" rel="noopener noreferrer" class="instagram-link" aria-label="Instagram Motiva.me">
+        <img src="instagram_icon.png" alt="Ícone Instagram" />
+      </a>
+    </div>
   </div>
-  <div id="socialHeader" aria-label="Siga-nos nas redes sociais">
-    <span>Siga-nos</span>
-    <a href="https://www.instagram.com/seu_perfil_instagram" target="_blank" rel="noopener noreferrer" class="instagram-link" aria-label="Instagram Motiva.me">
-      <img src="instagram_icon.png" alt="Ícone Instagram" />
-    </a>
+  <div class="aviso" role="alert">
+    Você pode curtir, salvar e compartilhar quantas mensagens quiser, e ainda pode enviar sua própria mensagem que ela aparecerá aqui também!
   </div>
 </header>
 
 <main id="gallery">
   <!-- As imagens e títulos serão carregados aqui pelo JS -->
 </main>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true" tabindex="-1">
+  <button class="fechar" aria-label="Fechar imagem">&times;</button>
+  <img src="" alt="" />
+</div>
 
 <footer>
   <form id="formMotivacao" aria-label="Formulário de envio de mensagem">
@@ -210,13 +369,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
-  // Atualiza ano no rodapé
   document.getElementById('anoAtual').textContent = new Date().getFullYear();
-
-  // Inicializa EmailJS
   emailjs.init('FnhDPuvUd77_2JkKW');
 
-  // Função para carregar imagens da planilha CSV publicada Google Sheets
   async function carregarImagens() {
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRR-hxJ1-a5H4C1jfiEs4ItUkLxxmz6RI1c46cjcUIVkg9_JXzJuyOqFe3R7cqXCR_dvJAPOY_TRvLf/pub?gid=0&single=true&output=csv';
     try {
@@ -247,22 +402,17 @@
           img.src = url;
           img.alt = titulo;
 
-          // Zoom com estilo inline pra garantir que funcione
+          // Lightbox ativado no clique
           img.style.cursor = 'pointer';
-          img.style.transition = 'transform 0.3s ease';
           img.addEventListener('click', () => {
-           if (img.style.transform === 'scale(2)') {
-  img.style.transform = 'scale(1)';
-} else {
-  img.style.transform = 'scale(2)';
-}
+            abrirLightbox(url, titulo);
           });
 
           const tituloEl = document.createElement('div');
           tituloEl.classList.add('title');
           tituloEl.textContent = titulo;
 
-          // Botão do coração
+          // Botão coração
           const likeBtn = document.createElement('button');
           likeBtn.classList.add('like-btn');
           likeBtn.setAttribute('aria-label', 'Curtir');
@@ -270,7 +420,7 @@
 
           likeBtn.addEventListener('click', () => {
             likeBtn.classList.toggle('liked');
-            likeBtn.innerHTML = likeBtn.classList.contains('liked') ? '&#9829;' : '&#9825;'; // cheio ou vazio
+            likeBtn.innerHTML = likeBtn.classList.contains('liked') ? '&#9829;' : '&#9825;';
           });
 
           card.appendChild(img);
@@ -284,14 +434,42 @@
       console.error('Erro ao carregar imagens:', error);
     }
   }
-
   carregarImagens();
 
-  // Elementos
+  // Função do lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = lightbox.querySelector('img');
+  const fecharBtn = lightbox.querySelector('.fechar');
+
+  function abrirLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.style.display = 'flex';
+    lightbox.focus();
+  }
+
+  function fecharLightbox() {
+    lightbox.style.display = 'none';
+    lightboxImg.src = '';
+    lightboxImg.alt = '';
+  }
+
+  fecharBtn.addEventListener('click', fecharLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) fecharLightbox();
+  });
+
+  // Fechar com ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+      fecharLightbox();
+    }
+  });
+
+  // Anônimo checkbox e input nome
   const nomeInput = document.getElementById('nome');
   const anonimoCheckbox = document.getElementById('anonimo');
 
-  // Atualiza input nome quando marcar/desmarcar anônimo
   anonimoCheckbox.addEventListener('change', () => {
     if (anonimoCheckbox.checked) {
       nomeInput.value = 'ANÔNIMO';
