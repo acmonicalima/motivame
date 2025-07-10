@@ -14,6 +14,7 @@
       background-color: #F3CFC6;
       color: #222;
       padding: 20px;
+      scroll-behavior: smooth;
     }
     header {
       background-color: #fff;
@@ -24,12 +25,16 @@
       padding: 20px 30px;
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      align-items: center;
+      text-align: center;
     }
     .top-header {
       display: flex;
       align-items: center;
       gap: 25px;
       flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
     }
     header img {
       width: 220px;
@@ -49,7 +54,6 @@
       color: #555;
     }
     #socialHeader {
-      margin-left: auto;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -73,6 +77,9 @@
       text-align: center;
       user-select: none;
       box-shadow: 0 2px 4px rgba(0,123,255,0.3);
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
     }
     main {
       display: grid;
@@ -127,6 +134,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      position: relative;
     }
     form {
       max-width: 480px;
@@ -134,6 +142,7 @@
       flex-direction: column;
       gap: 10px;
       width: 100%;
+      margin: 0 auto;
     }
     label {
       font-weight: 600;
@@ -183,6 +192,8 @@
       font-size: 1.1rem;
       flex-wrap: wrap;
       gap: 10px;
+      max-width: 900px;
+      margin: 0 auto;
     }
     .creditos .instagram-link img {
       width: 36px;
@@ -190,6 +201,30 @@
       vertical-align: middle;
       cursor: pointer;
     }
+    /* Botão Topo */
+    #btnTopo {
+      position: fixed;
+      bottom: 40px;
+      right: 30px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      transition: background-color 0.3s ease;
+    }
+    #btnTopo:hover {
+      background-color: #0056b3;
+    }
+
     /* Lightbox (popup da imagem) */
     #lightbox {
       display: none;
@@ -226,7 +261,7 @@
     /* === RESPONSIVIDADE === */
     @media (max-width: 1024px) {
       main {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr); /* Mantendo 3 colunas */
       }
       header {
         padding: 15px 20px;
@@ -266,15 +301,16 @@
         padding: 10px;
       }
       main {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr); /* 3 colunas no celular */
       }
       header {
         padding: 15px 15px;
       }
       .top-header {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 12px;
+        text-align: center;
       }
       header img {
         width: 140px;
@@ -288,6 +324,7 @@
       #socialHeader {
         margin-left: 0;
         font-size: 1rem;
+        justify-content: center;
       }
       #socialHeader img {
         width: 24px;
@@ -364,7 +401,12 @@
     <div class="info-msg" id="infoMsg" aria-live="polite"></div>
   </form>
 
-  <div class="creditos">© Mônica Lima - Ctrl X <span id="anoAtual"></span></div>
+  <div class="creditos">
+    © Mônica Lima - Ctrl X <span id="anoAtual"></span>
+  </div>
+
+  <!-- Botão topo -->
+  <button id="btnTopo" aria-label="Voltar ao topo">&#8679;</button>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -402,7 +444,6 @@
           img.src = url;
           img.alt = titulo;
 
-          // Lightbox ativado no clique
           img.style.cursor = 'pointer';
           img.addEventListener('click', () => {
             abrirLightbox(url, titulo);
@@ -412,11 +453,10 @@
           tituloEl.classList.add('title');
           tituloEl.textContent = titulo;
 
-          // Botão coração
           const likeBtn = document.createElement('button');
           likeBtn.classList.add('like-btn');
           likeBtn.setAttribute('aria-label', 'Curtir');
-          likeBtn.innerHTML = '&#9825;'; // coração vazio
+          likeBtn.innerHTML = '&#9825;'; 
 
           likeBtn.addEventListener('click', () => {
             likeBtn.classList.toggle('liked');
@@ -436,7 +476,7 @@
   }
   carregarImagens();
 
-  // Função do lightbox
+  // Lightbox
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = lightbox.querySelector('img');
   const fecharBtn = lightbox.querySelector('.fechar');
@@ -459,7 +499,6 @@
     if (e.target === lightbox) fecharLightbox();
   });
 
-  // Fechar com ESC
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && lightbox.style.display === 'flex') {
       fecharLightbox();
@@ -519,6 +558,19 @@
         infoMsg.textContent = 'Erro ao enviar. Tente novamente.';
         infoMsg.style.color = 'red';
       });
+  });
+
+  // Mostrar/esconder botão topo
+  const btnTopo = document.getElementById('btnTopo');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 200) {
+      btnTopo.style.display = 'flex';
+    } else {
+      btnTopo.style.display = 'none';
+    }
+  });
+  btnTopo.addEventListener('click', () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
   });
 </script>
 
