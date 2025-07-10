@@ -194,7 +194,7 @@
 
   // Função para carregar imagens da planilha CSV publicada Google Sheets
   async function carregarImagens() {
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTXIrIUjF9AK224uSnpV8yyCTGVWR2MNa_xn-LzVG38Akp9LoSztjBrUPWKwfV9pl8ZkoRgq00_ATlG/pub?gid=0&single=true&output=csv';
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRR-hxJ1-a5H4C1jfiEs4ItUkLxxmz6RI1c46cjcUIVkg9_JXzJuyOqFe3R7cqXCR_dvJAPOY_TRvLf/pub?gid=0&single=true&output=csv';
     try {
       const response = await fetch(csvUrl);
       if (!response.ok) throw new Error('Erro ao buscar CSV');
