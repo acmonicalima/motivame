@@ -19,45 +19,45 @@
       background-color: #fff; /* fundo branco só no cabeçalho */
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
-      gap: 15px;
-      padding: 10px 20px;
+      margin-bottom: 30px;
+      gap: 25px;
+      padding: 20px 30px;
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     header img {
-      width: 150px; /* logo maior */
+      width: 220px; /* logo maior */
       height: auto;
     }
     .textos {
       font-weight: bold;
-      font-size: 1.4rem;
+      font-size: 2rem;
       line-height: 1.3;
     }
     .subtext {
       font-weight: normal;
-      font-size: 1rem;
+      font-size: 1.3rem;
       color: #555;
     }
     #socialHeader {
       margin-left: auto;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 1.3rem;
       color: #333;
     }
     #socialHeader img {
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
       cursor: pointer;
     }
     main {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      grid-template-columns: repeat(3, 1fr); /* fixo 3 colunas */
       gap: 15px;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
     .card {
       border: 1px solid #ddd;
@@ -65,6 +65,7 @@
       border-radius: 6px;
       background: #fafafa;
       cursor: default;
+      position: relative;
     }
     .card img {
       max-width: 100%;
@@ -75,18 +76,35 @@
     }
     .card .title {
       font-weight: bold;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: #222;
       user-select: none;
+      margin-bottom: 8px;
+    }
+    /* Botão do coração */
+    .like-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.8rem;
+      color: #888;
+      user-select: none;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      transition: color 0.3s ease;
+    }
+    .like-btn.liked {
+      color: red;
     }
     footer {
       border-top: 1px solid #ccc;
-      padding-top: 15px;
-      font-size: 0.9rem;
+      padding-top: 30px;
+      font-size: 1.1rem;
       color: #666;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
     }
     form {
       max-width: 480px;
@@ -96,10 +114,10 @@
     }
     label {
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
     textarea, input[type="text"] {
-      font-size: 1rem;
+      font-size: 1.1rem;
       padding: 8px;
       border: 1px solid #aaa;
       border-radius: 4px;
@@ -110,16 +128,18 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      font-size: 1.1rem;
     }
     button[type="submit"] {
       background-color: #007bff;
       color: white;
       font-weight: bold;
-      padding: 10px 15px;
+      padding: 12px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      font-size: 1.1rem;
     }
     button[type="submit"]:hover {
       background-color: #0056b3;
@@ -129,16 +149,18 @@
       color: green;
       min-height: 1.5em;
       user-select: none;
+      font-size: 1.1rem;
     }
     /* Para o link do Instagram no rodapé */
     .creditos {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      font-size: 1.1rem;
     }
     .creditos .instagram-link img {
-      width: 28px;
-      height: 28px;
+      width: 36px;
+      height: 36px;
       vertical-align: middle;
       cursor: pointer;
     }
@@ -212,7 +234,8 @@
 
       dados.forEach(linha => {
         const colunas = linha.split(',');
-        const titulo = colunas[idxTitulo] ? colunas[idxTitulo].trim() : 'Sem título';
+        // Aqui a mudança: se não tiver título, fica vazio, não "Sem título"
+        const titulo = colunas[idxTitulo] ? colunas[idxTitulo].trim() : '';
         const url = colunas[idxUrl] ? colunas[idxUrl].trim() : '';
 
         if (url) {
@@ -227,8 +250,20 @@
           tituloEl.classList.add('title');
           tituloEl.textContent = titulo;
 
+          // Botão do coração
+          const likeBtn = document.createElement('button');
+          likeBtn.classList.add('like-btn');
+          likeBtn.setAttribute('aria-label', 'Curtir');
+          likeBtn.innerHTML = '&#9825;'; // coração vazio
+
+          likeBtn.addEventListener('click', () => {
+            likeBtn.classList.toggle('liked');
+            likeBtn.innerHTML = likeBtn.classList.contains('liked') ? '&#9829;' : '&#9825;'; // cheio ou vazio
+          });
+
           card.appendChild(img);
           card.appendChild(tituloEl);
+          card.appendChild(likeBtn);
           gallery.appendChild(card);
         }
       });
